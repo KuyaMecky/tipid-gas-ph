@@ -515,3 +515,4 @@ day4 commit 13 - 2025-03-15T09:34:40 - feat: set up Leaflet and react-leaflet
 day4 commit 14 - 2025-03-15T09:32:20 - feat: add heroicons package
 day4 commit 15 - 2025-03-15T09:30:00 - chore: configure next.config for images
 day4 commit 16 - 2025-03-15T09:28:40 - feat: create shared UI components
+day4 commit 17 - 2025-03-15T09:26:20 - feat: add Button and CategoryPill components
