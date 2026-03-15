@@ -518,3 +518,4 @@ day4 commit 16 - 2025-03-15T09:28:40 - feat: create shared UI components
 day4 commit 17 - 2025-03-15T09:26:20 - feat: add Button and CategoryPill components
 day4 commit 18 - 2025-03-15T10:24:00 - feat: create AdSlot placeholder component
 day4 commit 19 - 2025-03-15T10:22:40 - feat: set up navigation helpers
+day4 commit 20 - 2025-03-15T10:20:20 - feat: add date-fns and html-react-parser
