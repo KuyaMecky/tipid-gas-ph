@@ -564,3 +564,4 @@ day4 commit 62 - 2025-03-15T14:56:20 - feat: add Framer Motion dependency
 day4 commit 63 - 2025-03-15T15:54:00 - feat: set up Leaflet and react-leaflet
 day4 commit 64 - 2025-03-15T15:52:40 - feat: add heroicons package
 day4 commit 65 - 2025-03-15T15:50:20 - chore: configure next.config for images
+day4 commit 66 - 2025-03-15T15:48:00 - feat: create shared UI components
