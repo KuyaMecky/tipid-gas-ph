@@ -521,3 +521,4 @@ day4 commit 19 - 2025-03-15T10:22:40 - feat: set up navigation helpers
 day4 commit 20 - 2025-03-15T10:20:20 - feat: add date-fns and html-react-parser
 day4 commit 21 - 2025-03-15T10:18:00 - feat: create base page routes
 day4 commit 22 - 2025-03-15T10:16:40 - style: add custom scrollbar utilities
+day4 commit 23 - 2025-03-15T10:14:20 - feat: configure metadata and SEO defaults
