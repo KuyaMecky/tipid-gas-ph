@@ -587,3 +587,4 @@ day4 commit 85 - 2025-03-15T17:10:40 - feat: add responsive breakpoint setup
 day4 commit 86 - 2025-03-15T17:08:20 - chore: configure ESLint and Prettier
 day4 commit 87 - 2025-03-15T17:06:00 - feat: add Framer Motion dependency
 day4 commit 88 - 2025-03-15T17:04:40 - feat: set up Leaflet and react-leaflet
+day4 commit 89 - 2025-03-15T17:02:20 - feat: add heroicons package
