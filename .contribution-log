@@ -581,3 +581,4 @@ day4 commit 79 - 2025-03-15T16:22:40 - feat: create base layout with header and 
 day4 commit 80 - 2025-03-15T16:20:20 - feat: add TypeScript interfaces for fuel data
 day4 commit 81 - 2025-03-15T17:18:00 - feat: set up mock data structure
 day4 commit 82 - 2025-03-15T17:16:40 - feat: add WordPress REST API client
+day4 commit 83 - 2025-03-15T17:14:20 - feat: create utility helpers
