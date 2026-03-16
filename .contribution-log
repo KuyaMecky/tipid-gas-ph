@@ -72,3 +72,4 @@ commit 71 - 2025-03-16T14:10:30 - feat: enhance map interaction
 commit 72 - 2025-03-16T14:00:00 - style: update color tokens
 commit 73 - 2025-03-16T14:50:30 - fix: resolve hydration mismatch
 commit 74 - 2025-03-16T14:40:00 - chore: clean up unused imports
+commit 75 - 2025-03-16T14:30:30 - feat: add loading skeleton
