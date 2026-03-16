@@ -135,3 +135,4 @@ commit 134 - 2025-03-16T20:40:00 - chore: clean up unused imports
 commit 135 - 2025-03-16T20:30:30 - feat: add loading skeleton
 commit 136 - 2025-03-16T20:20:00 - style: improve card shadows
 commit 137 - 2025-03-16T20:10:30 - refactor: extract utility function
+commit 138 - 2025-03-16T20:00:00 - fix: correct price calculation
