@@ -122,3 +122,4 @@ commit 121 - 2025-03-16T18:50:30 - style: adjust spacing and padding
 commit 122 - 2025-03-16T18:40:00 - fix: resolve mobile layout issue
 commit 123 - 2025-03-16T19:30:30 - chore: update dependencies
 commit 124 - 2025-03-16T19:20:00 - feat: improve fuel price display
+commit 125 - 2025-03-16T19:10:30 - docs: update inline comments
