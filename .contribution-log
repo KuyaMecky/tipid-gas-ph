@@ -45,3 +45,4 @@ commit 44 - 2025-03-16T11:40:00 - chore: clean up unused imports
 commit 45 - 2025-03-16T12:30:30 - feat: add loading skeleton
 commit 46 - 2025-03-16T12:20:00 - style: improve card shadows
 commit 47 - 2025-03-16T12:10:30 - refactor: extract utility function
+commit 48 - 2025-03-16T12:00:00 - fix: correct price calculation
