@@ -268,3 +268,4 @@ commit 267 - 2025-03-17T16:31:29 - feat: improve station filtering
 commit 268 - 2025-03-17T17:21:59 - chore: update type definitions
 commit 269 - 2025-03-17T17:11:29 - style: enhance gradient overlays
 commit 270 - 2025-03-17T17:01:59 - refactor: optimize component rendering
+commit 271 - 2025-03-17T17:51:29 - style: adjust spacing and padding
