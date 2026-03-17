@@ -287,3 +287,4 @@ commit 286 - 2025-03-17T18:21:59 - style: improve card shadows
 commit 287 - 2025-03-17T18:11:29 - refactor: extract utility function
 commit 288 - 2025-03-17T18:01:59 - fix: correct price calculation
 commit 289 - 2025-03-17T18:51:29 - feat: improve search functionality
+commit 290 - 2025-03-17T19:41:59 - style: adjust mobile nav spacing
