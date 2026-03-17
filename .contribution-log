@@ -249,3 +249,4 @@ commit 248 - 2025-03-17T15:41:59 - style: refine typography scale
 commit 249 - 2025-03-17T15:31:29 - fix: correct responsive breakpoints
 commit 250 - 2025-03-17T15:21:59 - refactor: simplify state management
 commit 251 - 2025-03-17T15:11:29 - feat: enhance map interaction
+commit 252 - 2025-03-17T15:01:59 - style: update color tokens
