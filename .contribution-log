@@ -255,3 +255,4 @@ commit 254 - 2025-03-17T15:41:59 - chore: clean up unused imports
 commit 255 - 2025-03-17T15:31:29 - feat: add loading skeleton
 commit 256 - 2025-03-17T15:21:59 - style: improve card shadows
 commit 257 - 2025-03-17T16:11:29 - refactor: extract utility function
+commit 258 - 2025-03-17T16:01:59 - fix: correct price calculation
