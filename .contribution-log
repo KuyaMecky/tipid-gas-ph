@@ -292,3 +292,4 @@ commit 291 - 2025-03-17T19:31:29 - perf: reduce bundle size
 commit 292 - 2025-03-17T19:21:59 - fix: resolve scroll behavior
 commit 293 - 2025-03-17T19:11:29 - feat: add price comparison logic
 commit 294 - 2025-03-17T19:01:59 - style: refine button styles
+commit 295 - 2025-03-17T19:51:29 - refactor: modularize feed components
