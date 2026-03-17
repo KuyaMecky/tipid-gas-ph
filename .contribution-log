@@ -228,3 +228,4 @@ commit 227 - 2025-03-17T13:11:29 - refactor: extract utility function
 commit 228 - 2025-03-17T13:01:59 - fix: correct price calculation
 commit 229 - 2025-03-17T13:51:29 - feat: improve search functionality
 commit 230 - 2025-03-17T13:41:59 - style: adjust mobile nav spacing
+commit 231 - 2025-03-17T13:31:29 - perf: reduce bundle size
