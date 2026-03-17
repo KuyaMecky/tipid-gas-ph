@@ -224,3 +224,4 @@ commit 223 - 2025-03-17T13:51:29 - fix: resolve hydration mismatch
 commit 224 - 2025-03-17T13:41:59 - chore: clean up unused imports
 commit 225 - 2025-03-17T13:31:29 - feat: add loading skeleton
 commit 226 - 2025-03-17T13:21:59 - style: improve card shadows
+commit 227 - 2025-03-17T13:11:29 - refactor: extract utility function
