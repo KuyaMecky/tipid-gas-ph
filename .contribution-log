@@ -340,3 +340,4 @@ commit 339 - 2025-03-18T08:32:28 - fix: correct responsive breakpoints
 commit 340 - 2025-03-18T08:22:58 - refactor: simplify state management
 commit 341 - 2025-03-18T08:12:28 - feat: enhance map interaction
 commit 342 - 2025-03-18T08:02:58 - style: update color tokens
+commit 343 - 2025-03-18T08:52:28 - fix: resolve hydration mismatch
