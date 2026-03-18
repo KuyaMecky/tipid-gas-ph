@@ -474,3 +474,4 @@ commit 473 - 2025-03-18T20:12:28 - feat: add price comparison logic
 commit 474 - 2025-03-18T20:02:58 - style: refine button styles
 commit 475 - 2025-03-18T20:52:28 - refactor: modularize feed components
 commit 476 - 2025-03-18T20:42:58 - fix: correct date formatting
+commit 477 - 2025-03-18T20:32:28 - feat: improve station filtering
