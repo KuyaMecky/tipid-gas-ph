@@ -365,3 +365,4 @@ commit 364 - 2025-03-18T10:22:58 - feat: improve fuel price display
 commit 365 - 2025-03-18T10:12:28 - docs: update inline comments
 commit 366 - 2025-03-18T10:02:58 - test: add unit test stubs
 commit 367 - 2025-03-18T10:52:28 - perf: optimize image loading
+commit 368 - 2025-03-18T11:42:58 - style: refine typography scale
