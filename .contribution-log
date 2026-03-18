@@ -466,3 +466,4 @@ commit 465 - 2025-03-18T19:32:28 - feat: add loading skeleton
 commit 466 - 2025-03-18T19:22:58 - style: improve card shadows
 commit 467 - 2025-03-18T20:12:28 - refactor: extract utility function
 commit 468 - 2025-03-18T20:02:58 - fix: correct price calculation
+commit 469 - 2025-03-18T20:52:28 - feat: improve search functionality
