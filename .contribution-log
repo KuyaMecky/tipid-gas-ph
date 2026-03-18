@@ -479,3 +479,4 @@ commit 478 - 2025-03-18T21:22:58 - chore: update type definitions
 commit 479 - 2025-03-18T21:12:28 - style: enhance gradient overlays
 commit 480 - 2025-03-18T21:02:58 - refactor: optimize component rendering
 commit 481 - 2025-03-18T21:52:28 - style: adjust spacing and padding
+commit 482 - 2025-03-18T21:42:58 - fix: resolve mobile layout issue
