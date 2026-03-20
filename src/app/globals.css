@@ -225,6 +225,17 @@ body {
 }
 
 /* ================================================================
+   Mobile App-Style Utilities
+   ================================================================ */
+.mobile-card-shadow {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.mobile-gradient-header {
+  background: linear-gradient(135deg, var(--tw-gradient-from) 0%, var(--tw-gradient-to) 100%);
+}
+
+/* ================================================================
    Map Utilities (Leaflet)
    ================================================================ */
 .leaflet-container {
