@@ -11,7 +11,6 @@ import {
 import L from "leaflet";
 import type { GasStation } from "@/lib/types";
 import { brandColors } from "@/lib/mock-data";
-import { formatDistance, calculateDistance } from "@/lib/utils";
 
 function createStationIcon(brand: string) {
   const color = brandColors[brand] || "#f97316";
@@ -99,14 +98,7 @@ export default function StationMapContainer({
       </Marker>
 
       {/* Station markers */}
-      {stations.map((station) => {
-        const dist = calculateDistance(
-          userLocation.lat,
-          userLocation.lng,
-          station.lat,
-          station.lng
-        );
-        return (
+      {stations.map((station) => (
           <Marker
             key={station.id}
             position={[station.lat, station.lng]}
@@ -114,19 +106,8 @@ export default function StationMapContainer({
             eventHandlers={{
               click: () => onStationSelect?.(station),
             }}
-          >
-            <Popup>
-              <div className="text-sm min-w-[160px]">
-                <p className="font-bold">{station.name}</p>
-                <p className="text-gray-500 text-xs">{formatDistance(dist)}</p>
-                <p className="mt-1 font-medium text-orange-600">
-                  Diesel: P{station.prices.diesel.toFixed(2)}
-                </p>
-              </div>
-            </Popup>
-          </Marker>
-        );
-      })}
+          />
+      ))}
     </LeafletMap>
   );
 }

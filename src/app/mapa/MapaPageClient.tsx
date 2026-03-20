@@ -48,23 +48,25 @@ export default function MapaPageClient() {
   }
 
   return (
-    <div className="relative w-full" style={{ height: "calc(100dvh - 128px)" }}>
-      {/* Full-screen map */}
-      <div className="absolute inset-0">
-        <DynamicMap
-          stations={filteredStations}
-          userLocation={MOCK_USER_LOCATION}
-          onStationSelect={handleStationSelect}
-          className="w-full h-full"
-        />
+    <>
+      <div className="relative w-full" style={{ height: "calc(100dvh - 128px)", zIndex: 0 }}>
+        {/* Full-screen map */}
+        <div className="absolute inset-0">
+          <DynamicMap
+            stations={filteredStations}
+            userLocation={MOCK_USER_LOCATION}
+            onStationSelect={handleStationSelect}
+            className="w-full h-full"
+          />
+        </div>
+
+        {/* Brand filter chips overlay */}
+        <div className="absolute top-0 left-0 right-0 z-30">
+          <BrandFilterChips activeBrand={brandFilter} onSelect={handleBrandFilter} />
+        </div>
       </div>
 
-      {/* Brand filter chips overlay */}
-      <div className="absolute top-0 left-0 right-0 z-30">
-        <BrandFilterChips activeBrand={brandFilter} onSelect={handleBrandFilter} />
-      </div>
-
-      {/* Bottom sheet */}
+      {/* Bottom sheet — outside map container so Leaflet z-indexes cannot overlap */}
       <BottomSheet state={sheetState} onStateChange={setSheetState}>
         {selectedStation ? (
           <StationDetail
@@ -90,6 +92,6 @@ export default function MapaPageClient() {
           </div>
         )}
       </BottomSheet>
-    </div>
+    </>
   );
 }
