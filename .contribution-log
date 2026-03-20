@@ -13,3 +13,4 @@ commit 12 - 2025-03-16T09:00:00 - style: update color tokens
 commit 13 - 2025-03-16T09:50:30 - fix: resolve hydration mismatch
 commit 14 - 2025-03-16T09:40:00 - chore: clean up unused imports
 commit 15 - 2025-03-16T09:30:30 - feat: add loading skeleton
+commit 16 - 2025-03-16T09:20:00 - style: improve card shadows
