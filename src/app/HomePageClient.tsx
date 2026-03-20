@@ -11,6 +11,12 @@ import FloatingActionButton from "@/components/ui/FloatingActionButton";
 import MapPreviewCard from "@/components/home/MapPreviewCard";
 import AdSlot from "@/components/ui/AdSlot";
 import DesktopSidebar from "@/components/sidebar/DesktopSidebar";
+import MobileHeroAlert from "@/components/mobile/MobileHeroAlert";
+import MobileActionChips from "@/components/mobile/MobileActionChips";
+import MobilePriceCard from "@/components/mobile/MobilePriceCard";
+import MobileCheapestCard from "@/components/mobile/MobileCheapestCard";
+import MobileSubscribeBanner from "@/components/mobile/MobileSubscribeBanner";
+import MobileStickySubscribe from "@/components/mobile/MobileStickySubscribe";
 import type { FeedContentType } from "@/lib/types";
 import { mockFeedItems, mockHookSlides, mockFuelPrices } from "@/lib/mock-data";
 
@@ -65,6 +71,11 @@ export default function HomePageClient() {
   const standardBatch2 = visibleItems.slice(7, 11);
   const standardBatch3 = visibleItems.slice(11);
 
+  // Mobile: top 2 ALERT items for price cards
+  const mobileAlertItems = mockFeedItems
+    .filter((item) => item.contentType === "ALERT" && item.priceChange)
+    .slice(0, 2);
+
   function handleFilterChange(value: FeedContentType | "ALL") {
     setActiveFilter(value);
     setVisibleCount(INITIAL_VISIBLE);
@@ -75,17 +86,36 @@ export default function HomePageClient() {
       {/* Alert Banner */}
       {breakingItem && <AlertBanner item={breakingItem} />}
 
-      {/* Hook Hero */}
-      <HookHero slides={mockHookSlides} />
+      {/* Hook Hero — desktop */}
+      <div className="hidden lg:block">
+        <HookHero slides={mockHookSlides} />
+      </div>
+      {/* Mobile Hero Alert */}
+      <div className="lg:hidden">
+        <MobileHeroAlert slide={mockHookSlides[0]} breakingItem={breakingItem} />
+      </div>
 
-      {/* Quick Price Strip */}
-      <QuickPriceStrip prices={mockFuelPrices} />
+      {/* Quick Price Strip — desktop */}
+      <div className="hidden lg:block">
+        <QuickPriceStrip prices={mockFuelPrices} />
+      </div>
+      {/* Mobile Action Chips */}
+      <div className="lg:hidden">
+        <MobileActionChips />
+      </div>
 
       {/* Feed + Sidebar Layout */}
-      <div className="max-w-7xl mx-auto px-4 py-6">
+      <div className="max-w-7xl mx-auto px-4 pt-4 lg:py-6">
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8">
       {/* Feed Column */}
       <div>
+        {/* Mobile Price Cards */}
+        <div className="lg:hidden space-y-4 mb-4">
+          {mobileAlertItems[0] && <MobilePriceCard item={mobileAlertItems[0]} />}
+          <MobileCheapestCard />
+          <MobileSubscribeBanner variant="compact" />
+        </div>
+
         {/* Filter Pills */}
         <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide pb-4">
           {FILTERS.map((f) => (
@@ -219,8 +249,16 @@ export default function HomePageClient() {
       </div>
       </div>
 
+      {/* Mobile Inline Subscribe Banner */}
+      <div className="lg:hidden max-w-7xl mx-auto px-4 py-4">
+        <MobileSubscribeBanner variant="inline" />
+      </div>
+
       {/* Floating Action Button */}
       <FloatingActionButton />
+
+      {/* Mobile Sticky Subscribe */}
+      <MobileStickySubscribe />
     </>
   );
 }
