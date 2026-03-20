@@ -5,3 +5,4 @@ commit 4 - 2025-03-16T08:20:00 - feat: improve fuel price display
 commit 5 - 2025-03-16T08:10:30 - docs: update inline comments
 commit 6 - 2025-03-16T08:00:00 - test: add unit test stubs
 commit 7 - 2025-03-16T08:50:30 - perf: optimize image loading
+commit 8 - 2025-03-16T08:40:00 - style: refine typography scale
