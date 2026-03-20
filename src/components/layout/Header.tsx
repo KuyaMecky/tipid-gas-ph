@@ -1,0 +1,175 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Bars3Icon,
+  XMarkIcon,
+  MagnifyingGlassIcon,
+} from "@heroicons/react/24/outline";
+import SearchBar from "../ui/SearchBar";
+import { cn } from "@/lib/utils";
+
+const navLinks = [
+  { name: "Home", href: "/" },
+  { name: "Presyo ng Gas", href: "/gasolina" },
+  { name: "Balita", href: "/balita" },
+  { name: "Tips", href: "/tips" },
+  { name: "About", href: "/about" },
+];
+
+export default function Header() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    setMobileOpen(false);
+    setSearchOpen(false);
+  }, [pathname]);
+
+  return (
+    <>
+      <header
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          scrolled
+            ? "bg-white/95 backdrop-blur-md shadow-sm"
+            : "bg-white"
+        )}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-2 flex-shrink-0">
+              <div className="w-9 h-9 bg-orange-500 rounded-lg flex items-center justify-center">
+                <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C10.5 2 9.5 3.5 9.5 5.5C9.5 7.5 10 9 10 11C8 11 6 10.5 5 9.5C4.5 10.5 4 12 4 13.5C4 18 7.5 22 12 22C16.5 22 20 18 20 13.5C20 8 16 4 14.5 3C13.5 2.3 12.5 2 12 2Z" />
+                </svg>
+              </div>
+              <div className="hidden sm:block">
+                <span className="font-extrabold text-gray-900 text-lg">TIPID</span>{" "}
+                <span className="font-extrabold text-orange-500 text-lg">GAS</span>
+              </div>
+            </Link>
+
+            {/* Desktop Nav */}
+            <nav className="hidden lg:flex items-center gap-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={cn(
+                    "px-3 py-2 text-sm font-medium rounded-lg transition-colors",
+                    pathname === link.href
+                      ? "text-orange-500 bg-orange-50"
+                      : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                  )}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </nav>
+
+            {/* Right side actions */}
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setSearchOpen(!searchOpen)}
+                className="p-2 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+                aria-label="Toggle search"
+              >
+                <MagnifyingGlassIcon className="w-5 h-5" />
+              </button>
+
+              <Link
+                href="/contact"
+                className="hidden sm:inline-flex px-4 py-2 bg-orange-500 text-white text-sm font-semibold rounded-lg hover:bg-orange-600 transition-colors"
+              >
+                Contact
+              </Link>
+
+              <button
+                onClick={() => setMobileOpen(!mobileOpen)}
+                className="lg:hidden p-2 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+                aria-label="Toggle menu"
+              >
+                {mobileOpen ? (
+                  <XMarkIcon className="w-6 h-6" />
+                ) : (
+                  <Bars3Icon className="w-6 h-6" />
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Search overlay */}
+        <AnimatePresence>
+          {searchOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="overflow-hidden border-t border-gray-100 bg-white"
+            >
+              <div className="max-w-2xl mx-auto px-4 py-4">
+                <SearchBar />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Mobile menu */}
+        <AnimatePresence>
+          {mobileOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="lg:hidden overflow-hidden border-t border-gray-100 bg-white"
+            >
+              <nav className="px-4 py-3 space-y-1">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={cn(
+                      "block px-4 py-3 text-base font-medium rounded-lg transition-colors",
+                      pathname === link.href
+                        ? "text-orange-500 bg-orange-50"
+                        : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                    )}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+                <div className="pt-2">
+                  <Link
+                    href="/contact"
+                    className="block w-full text-center px-4 py-3 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition-colors"
+                  >
+                    Contact
+                  </Link>
+                </div>
+              </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </header>
+
+      {/* Spacer for fixed header */}
+      <div className="h-16" />
+    </>
+  );
+}
