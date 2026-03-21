@@ -18,3 +18,4 @@ commit 17 - 2025-03-16T09:10:30 - refactor: extract utility function
 commit 18 - 2025-03-16T09:00:00 - fix: correct price calculation
 commit 19 - 2025-03-16T09:50:30 - feat: improve search functionality
 commit 20 - 2025-03-16T09:40:00 - style: adjust mobile nav spacing
+commit 21 - 2025-03-16T09:30:30 - perf: reduce bundle size
