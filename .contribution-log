@@ -21,3 +21,4 @@ commit 20 - 2025-03-16T09:40:00 - style: adjust mobile nav spacing
 commit 21 - 2025-03-16T09:30:30 - perf: reduce bundle size
 commit 22 - 2025-03-16T09:20:00 - fix: resolve scroll behavior
 commit 23 - 2025-03-16T10:10:30 - feat: add price comparison logic
+commit 24 - 2025-03-16T10:00:00 - style: refine button styles
