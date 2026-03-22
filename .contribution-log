@@ -50,3 +50,4 @@ commit 49 - 2025-03-16T12:50:30 - feat: improve search functionality
 commit 50 - 2025-03-16T12:40:00 - style: adjust mobile nav spacing
 commit 51 - 2025-03-16T12:30:30 - perf: reduce bundle size
 commit 52 - 2025-03-16T12:20:00 - fix: resolve scroll behavior
+commit 53 - 2025-03-16T12:10:30 - feat: add price comparison logic
