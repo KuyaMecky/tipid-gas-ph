@@ -105,3 +105,4 @@ commit 104 - 2025-03-16T17:40:00 - chore: clean up unused imports
 commit 105 - 2025-03-16T17:30:30 - feat: add loading skeleton
 commit 106 - 2025-03-16T17:20:00 - style: improve card shadows
 commit 107 - 2025-03-16T17:10:30 - refactor: extract utility function
+commit 108 - 2025-03-16T17:00:00 - fix: correct price calculation
