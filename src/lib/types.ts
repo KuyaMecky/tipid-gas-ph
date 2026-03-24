@@ -107,6 +107,7 @@ export interface Category {
   slug: string;
   description: string;
   count: number;
+  image?: string;
 }
 
 export interface SiteSettings {
@@ -207,6 +208,19 @@ export interface HookSlide {
   category: string;
 }
 
+// Poll types
+export interface PollOption {
+  id: string;
+  label: string;
+  votes: number;
+}
+
+export interface PollData {
+  question: string;
+  options: PollOption[];
+  totalVotes: number;
+}
+
 // Gas station types
 export type StationAmenity =
   | "restroom"
@@ -224,6 +238,48 @@ export interface StationPrices {
   lastUpdated: string;
 }
 
+// NewsData.io API types
+export interface NewsDataArticle {
+  article_id: string;
+  title: string;
+  link: string;
+  keywords: string[] | null;
+  creator: string[] | null;
+  description: string | null;
+  content: string | null;
+  pubDate: string;
+  pubDateTZ: string;
+  image_url: string | null;
+  source_id: string;
+  source_name: string;
+  source_url: string;
+  source_icon: string | null;
+  language: string;
+  country: string[];
+  category: string[];
+  duplicate: boolean;
+}
+
+export interface NewsDataResponse {
+  status: string;
+  totalResults: number;
+  results: NewsDataArticle[];
+  nextPage: string | null;
+}
+
+// Normalized trending news item (from external API)
+export interface TrendingNewsItem {
+  id: string;
+  title: string;
+  description: string;
+  url: string;
+  imageUrl: string | null;
+  source: string;
+  sourceIcon: string | null;
+  publishedAt: string;
+  category: string;
+}
+
 export interface GasStation {
   id: number;
   brand: FuelBrand;
@@ -238,4 +294,63 @@ export interface GasStation {
   amenities: StationAmenity[];
   rating: number;
   operatingHours: string;
+}
+
+// Sponsored product types
+export interface SponsoredProduct {
+  id: number;
+  brand: string;
+  productName: string;
+  description: string;
+  imageUrl: string;
+  ctaLabel: string;
+  ctaHref: string;
+}
+
+// Weather forecast types
+export type WeatherCondition = "sunny" | "cloudy" | "rainy" | "stormy" | "partly-cloudy";
+
+export interface CityWeather {
+  city: string;
+  temp: number;
+  condition: WeatherCondition;
+  humidity: number;
+}
+
+export interface WeatherForecastData {
+  cities: CityWeather[];
+  asOf: string;
+}
+
+// Fuel quiz types
+export interface FuelQuizQuestion {
+  id: number;
+  question: string;
+  options: string[];
+  correctIndex: number;
+  explanation: string;
+}
+
+export interface FuelQuizData {
+  title: string;
+  questions: FuelQuizQuestion[];
+}
+
+// Fuel deal types
+export type DealType = "hot" | "new" | "limited";
+
+export interface FuelDeal {
+  id: number;
+  brand: string;
+  discount: string;
+  description: string;
+  validUntil: string;
+  dealType: DealType;
+  ctaLabel: string;
+  ctaHref: string;
+}
+
+// Bookmark bar types
+export interface BookmarkBarData {
+  savedCount: number;
 }

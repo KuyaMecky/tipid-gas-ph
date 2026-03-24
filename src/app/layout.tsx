@@ -29,11 +29,11 @@ const inter = Inter({
 });
 
 const siteName =
-  process.env.NEXT_PUBLIC_SITE_NAME || "Tipid Gas PH";
+  process.env.NEXT_PUBLIC_SITE_NAME || "Latest Balita PH";
 const siteDescription =
   process.env.NEXT_PUBLIC_SITE_DESCRIPTION ||
   "Presyo ng gasolina, diesel, at LPG sa Pilipinas — updated daily. Magtipid sa gas gamit ang real-time fuel price comparison.";
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://tipidgasph.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://latestbalitaph.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

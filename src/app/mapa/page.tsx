@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Hanapin ang pinakamalapit at pinakamurang gas station sa area mo. Real-time na presyo ng gasolina, diesel, at premium fuel mula sa Petron, Shell, Caltex, Phoenix, at iba pa.",
   openGraph: {
-    title: "Mapa ng Gas Stations — Tipid Gas PH",
+    title: "Mapa ng Gas Stations — Latest Balita PH",
     description:
       "Hanapin ang pinakamalapit at pinakamurang gas station. Real-time fuel prices at directions.",
   },

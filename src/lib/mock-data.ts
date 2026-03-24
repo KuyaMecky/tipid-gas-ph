@@ -1,21 +1,21 @@
-import type { Article, Category, FuelPrice, AuthorProfile, FeedItem, FeedContentType, FeedUrgency, HookSlide, GasStation, FuelBrand, StationAmenity } from "./types";
+import type { Article, Category, FuelPrice, AuthorProfile, FeedItem, FeedContentType, FeedUrgency, HookSlide, GasStation, FuelBrand, StationAmenity, PollData, FAQItem, SponsoredProduct, WeatherForecastData, FuelQuizData, FuelDeal, BookmarkBarData } from "./types";
 
 // Mock data for development / demo before WordPress is connected
 
-const PLACEHOLDER = "https://picsum.photos/seed/fuel1/800/420";
-const PLACEHOLDER_2 = "https://picsum.photos/seed/fuel2/800/420";
-const PLACEHOLDER_3 = "https://picsum.photos/seed/fuel3/800/420";
-const PLACEHOLDER_4 = "https://picsum.photos/seed/fuel4/800/420";
-const PLACEHOLDER_5 = "https://picsum.photos/seed/fuel5/800/420";
-const PLACEHOLDER_6 = "https://picsum.photos/seed/fuel6/800/420";
+const THUMB_GAS = "/thumbnails/Gas_.png";
+const THUMB_DAILY = "/thumbnails/DAily.png";
+const THUMB_ENTERTAINMENT = "/thumbnails/Entertainment.png";
+const THUMB_SPORT = "/thumbnails/Sport.png";
 
 export const mockCategories: Category[] = [
-  { id: 1, name: "Gasolina", slug: "gasolina", description: "Presyo ng gasolina sa buong Pilipinas", count: 42 },
-  { id: 2, name: "Diesel", slug: "diesel", description: "Presyo ng diesel at fuel updates", count: 35 },
-  { id: 3, name: "LPG", slug: "lpg", description: "Presyo ng LPG at cooking gas", count: 18 },
-  { id: 4, name: "Balita", slug: "balita", description: "Balita tungkol sa fuel industry", count: 28 },
-  { id: 5, name: "Tips", slug: "tips", description: "Tips sa pagtitipid ng gas", count: 22 },
-  { id: 6, name: "Eleksyon", slug: "eleksyon", description: "Epekto ng eleksyon sa presyo ng gas", count: 10 },
+  { id: 1, name: "Gasolina", slug: "gasolina", description: "Presyo ng gasolina sa buong Pilipinas", count: 42, image: THUMB_GAS },
+  { id: 2, name: "Diesel", slug: "diesel", description: "Presyo ng diesel at fuel updates", count: 35, image: THUMB_GAS },
+  { id: 3, name: "LPG", slug: "lpg", description: "Presyo ng LPG at cooking gas", count: 18, image: THUMB_GAS },
+  { id: 4, name: "Balita", slug: "balita", description: "Balita tungkol sa fuel industry", count: 28, image: THUMB_DAILY },
+  { id: 5, name: "Tips", slug: "tips", description: "Tips sa pagtitipid ng gas", count: 22, image: THUMB_GAS },
+  { id: 6, name: "Eleksyon", slug: "eleksyon", description: "Epekto ng eleksyon sa presyo ng gas", count: 10, image: THUMB_DAILY },
+  { id: 7, name: "Showbiz", slug: "showbiz", description: "Showbiz news at entertainment updates", count: 15, image: THUMB_ENTERTAINMENT },
+  { id: 8, name: "Sports", slug: "sports", description: "Philippine sports news at updates", count: 12, image: THUMB_SPORT },
 ];
 
 function makeArticle(overrides: Partial<Article> & { id: number; slug: string; title: string }): Article {
@@ -24,7 +24,7 @@ function makeArticle(overrides: Partial<Article> & { id: number; slug: string; t
     content: "<p>Full article content here...</p>",
     date: new Date(Date.now() - Math.random() * 7 * 24 * 60 * 60 * 1000).toISOString(),
     modified: new Date().toISOString(),
-    featuredImage: { url: PLACEHOLDER, alt: "Fuel price image", width: 1200, height: 630 },
+    featuredImage: { url: THUMB_GAS, alt: "Fuel price image", width: 1200, height: 630 },
     author: { name: "Maria Santos", slug: "maria-santos", avatar: "" },
     categories: [{ name: "Gasolina", slug: "gasolina" }],
     tags: [{ name: "PresyoNgGas", slug: "presyo-ng-gas" }],
@@ -38,7 +38,7 @@ export const mockArticles: Article[] = [
     slug: "presyo-ng-gasolina-petron-ngayong-linggo",
     title: "Presyo ng Gasolina sa Petron Ngayong Linggo — March 2026 Update",
     excerpt: "<p>Alamin ang updated na presyo ng Petron Blaze 100, XCS, at Xtra Advance para sa linggong ito. May rollback ba o price hike?</p>",
-    featuredImage: { url: PLACEHOLDER, alt: "Petron fuel prices", width: 1200, height: 630 },
+    featuredImage: { url: THUMB_GAS, alt: "Petron fuel prices", width: 1200, height: 630 },
     categories: [{ name: "Gasolina", slug: "gasolina" }, { name: "Balita", slug: "balita" }],
     author: { name: "Maria Santos", slug: "maria-santos", avatar: "" },
   }),
@@ -47,7 +47,7 @@ export const mockArticles: Article[] = [
     slug: "shell-vs-petron-vs-caltex-fuel-price-comparison",
     title: "Shell vs Petron vs Caltex: Alin ang Pinakamurang Gas Ngayon?",
     excerpt: "<p>Side-by-side comparison ng presyo ng tatlong pinakamalaking fuel brand sa Pilipinas. Alamin kung saan ka makakatipid!</p>",
-    featuredImage: { url: PLACEHOLDER_2, alt: "Fuel brand comparison", width: 1200, height: 630 },
+    featuredImage: { url: THUMB_GAS, alt: "Fuel brand comparison", width: 1200, height: 630 },
     categories: [{ name: "Gasolina", slug: "gasolina" }],
     author: { name: "Juan dela Cruz", slug: "juan-dela-cruz", avatar: "" },
   }),
@@ -56,7 +56,7 @@ export const mockArticles: Article[] = [
     slug: "paano-makatipid-sa-gas-10-tips",
     title: "Paano Makatipid sa Gas: 10 Tips para sa Filipino Drivers",
     excerpt: "<p>Nagtaas na naman ang presyo ng gas? Huwag mag-alala! Narito ang 10 proven tips para makatipid sa fuel expenses mo.</p>",
-    featuredImage: { url: PLACEHOLDER_3, alt: "Gas saving tips", width: 1200, height: 630 },
+    featuredImage: { url: THUMB_GAS, alt: "Gas saving tips", width: 1200, height: 630 },
     categories: [{ name: "Tips", slug: "tips" }],
     author: { name: "Ana Reyes", slug: "ana-reyes", avatar: "" },
   }),
@@ -65,7 +65,7 @@ export const mockArticles: Article[] = [
     slug: "diesel-price-update-march-2026",
     title: "Diesel Price Update: Magkano na ang Diesel Ngayong March 2026?",
     excerpt: "<p>Comprehensive update sa presyo ng diesel sa lahat ng major fuel brands. Kasama ang price history at trend analysis.</p>",
-    featuredImage: { url: PLACEHOLDER_4, alt: "Diesel prices", width: 1200, height: 630 },
+    featuredImage: { url: THUMB_GAS, alt: "Diesel prices", width: 1200, height: 630 },
     categories: [{ name: "Diesel", slug: "diesel" }],
     author: { name: "Carlos Tan", slug: "carlos-tan", avatar: "" },
   }),
@@ -74,7 +74,7 @@ export const mockArticles: Article[] = [
     slug: "lpg-price-update-pilipinas",
     title: "LPG Price Update: Presyo ng Cooking Gas sa Pilipinas Ngayon",
     excerpt: "<p>Alamin ang pinakabagong presyo ng LPG mula sa Petron Gasul, Solane, Total, at iba pa. May dagdag na P2/kg ngayong linggo.</p>",
-    featuredImage: { url: PLACEHOLDER_5, alt: "LPG prices Philippines", width: 1200, height: 630 },
+    featuredImage: { url: THUMB_GAS, alt: "LPG prices Philippines", width: 1200, height: 630 },
     categories: [{ name: "LPG", slug: "lpg" }],
     author: { name: "Maria Santos", slug: "maria-santos", avatar: "" },
   }),
@@ -83,7 +83,7 @@ export const mockArticles: Article[] = [
     slug: "doe-fuel-price-rollback-announcement",
     title: "DOE Nag-anunsyo ng Fuel Price Rollback sa Susunod na Linggo",
     excerpt: "<p>Good news para sa mga motorista! Ayon sa Department of Energy, magkakaroon ng rollback sa gasolina at diesel sa susunod na Martes.</p>",
-    featuredImage: { url: PLACEHOLDER_6, alt: "DOE fuel announcement", width: 1200, height: 630 },
+    featuredImage: { url: THUMB_DAILY, alt: "DOE fuel announcement", width: 1200, height: 630 },
     categories: [{ name: "Balita", slug: "balita" }, { name: "Gasolina", slug: "gasolina" }],
     author: { name: "Juan dela Cruz", slug: "juan-dela-cruz", avatar: "" },
   }),
@@ -92,7 +92,7 @@ export const mockArticles: Article[] = [
     slug: "epekto-ng-eleksyon-2025-sa-presyo-ng-gas",
     title: "Epekto ng Eleksyon sa Presyo ng Gas: Ano ang Mga Pangako ng Kandidato?",
     excerpt: "<p>Sinusuri natin ang mga plataporma ng mga kandidato pagdating sa fuel subsidy, oil deregulation, at presyo ng bilihin.</p>",
-    featuredImage: { url: PLACEHOLDER, alt: "Election fuel impact", width: 1200, height: 630 },
+    featuredImage: { url: THUMB_DAILY, alt: "Election fuel impact", width: 1200, height: 630 },
     categories: [{ name: "Eleksyon", slug: "eleksyon" }],
     author: { name: "Ana Reyes", slug: "ana-reyes", avatar: "" },
   }),
@@ -101,9 +101,29 @@ export const mockArticles: Article[] = [
     slug: "phoenix-fuel-masters-promo-march-2026",
     title: "Phoenix Fuel Masters: May Bagong Promo at Discount para sa March!",
     excerpt: "<p>Alamin ang latest promo ng Phoenix Petroleum kasama ang SUPER97 at fuel card discounts para sa buwan ng Marso.</p>",
-    featuredImage: { url: PLACEHOLDER_2, alt: "Phoenix fuel promo", width: 1200, height: 630 },
+    featuredImage: { url: THUMB_GAS, alt: "Phoenix fuel promo", width: 1200, height: 630 },
     categories: [{ name: "Gasolina", slug: "gasolina" }],
     author: { name: "Carlos Tan", slug: "carlos-tan", avatar: "" },
+  }),
+  makeArticle({
+    id: 9,
+    slug: "bts-drops-new-studio-album-arirang",
+    title: "BTS Drops New Studio Album 'Arirang' — Pinoy ARMY Nagwala!",
+    excerpt: "<p>Opisyal nang inilabas ng BTS ang kanilang bagong studio album na 'Arirang'. Alamin ang tracklist, collab artists, at kung saan makikinig.</p>",
+    featuredImage: { url: THUMB_ENTERTAINMENT, alt: "BTS new studio album Arirang", width: 1200, height: 630 },
+    categories: [{ name: "Showbiz", slug: "showbiz" }],
+    tags: [{ name: "BTS", slug: "bts" }, { name: "KPop", slug: "kpop" }],
+    author: { name: "Ana Reyes", slug: "ana-reyes", avatar: "" },
+  }),
+  makeArticle({
+    id: 10,
+    slug: "alex-eala-miami-open-third-round",
+    title: "Alex Eala Survives Laura Siegemund, Reaches Miami Open Third Round!",
+    excerpt: "<p>Ipinagmalaki ng Pilipinas si Alex Eala matapos niyang talunin si Laura Siegemund sa Miami Open. Sundan ang kanyang laban sa third round!</p>",
+    featuredImage: { url: THUMB_SPORT, alt: "Alex Eala Miami Open third round", width: 1200, height: 630 },
+    categories: [{ name: "Sports", slug: "sports" }],
+    tags: [{ name: "Tennis", slug: "tennis" }, { name: "AlexEala", slug: "alex-eala" }],
+    author: { name: "Juan dela Cruz", slug: "juan-dela-cruz", avatar: "" },
   }),
 ];
 
@@ -176,7 +196,15 @@ export const mockAuthorProfiles: AuthorProfile[] = [
 
 // Feed mock data
 
-const FEED_IMG = (seed: string) => `https://picsum.photos/seed/${seed}/800/420`;
+const FEED_IMG_MAP: Record<string, string> = {
+  gasolina: THUMB_GAS,
+  diesel: THUMB_GAS,
+  lpg: THUMB_GAS,
+  balita: THUMB_DAILY,
+  tips: THUMB_GAS,
+  showbiz: THUMB_ENTERTAINMENT,
+  sports: THUMB_SPORT,
+};
 
 const feedAuthors = [
   { name: "Maria Santos", slug: "maria-santos", avatar: "" },
@@ -191,6 +219,8 @@ function makeFeedItem(overrides: Partial<FeedItem> & {
   hookHeadline: string;
   contentType: FeedContentType;
 }): FeedItem {
+  const cats = overrides.categories ?? [{ name: "Gasolina", slug: "gasolina" }];
+  const thumbUrl = FEED_IMG_MAP[cats[0]?.slug ?? "gasolina"] ?? THUMB_GAS;
   return {
     subHeadline: "Alamin ang detalye dito.",
     urgency: "normal" as FeedUrgency,
@@ -198,10 +228,10 @@ function makeFeedItem(overrides: Partial<FeedItem> & {
     actionHref: `/article/${overrides.slug}`,
     reactionCount: Math.floor(Math.random() * 2000) + 100,
     isBreaking: false,
-    featuredImage: { url: FEED_IMG(`feed${overrides.id}`), alt: overrides.hookHeadline, width: 800, height: 420 },
+    featuredImage: { url: thumbUrl, alt: overrides.hookHeadline, width: 800, height: 420 },
     author: feedAuthors[overrides.id % feedAuthors.length],
     date: new Date(Date.now() - Math.random() * 3 * 24 * 60 * 60 * 1000).toISOString(),
-    categories: [{ name: "Gasolina", slug: "gasolina" }],
+    categories: cats,
     ...overrides,
   };
 }
@@ -209,18 +239,18 @@ function makeFeedItem(overrides: Partial<FeedItem> & {
 export const mockFeedItems: FeedItem[] = [
   // ALERT items (10)
   makeFeedItem({
-    id: 101, slug: "taas-presyo-gasolina-bukas", contentType: "ALERT",
-    hookHeadline: "TAAS-PRESYO: +P2.50/L sa Gasolina Bukas!",
-    subHeadline: "Epektibo bukas ng 6AM. Mag-full tank na ngayon!",
-    urgency: "critical", isBreaking: true, priceChange: "+P2.50/L",
+    id: 101, slug: "fuel-price-advisory-march-24-2026", contentType: "ALERT",
+    hookHeadline: "FUEL PRICE ADVISORY: Gasolina +P9.00 to P12.00/L, Diesel +P16.00 to P18.00/L!",
+    subHeadline: "Epektibo March 24, 2026. Pinakamataas na taas-presyo ngayong taon! Mag-full tank na ngayon!",
+    urgency: "critical", isBreaking: true, priceChange: "+P9.00-12.00/L",
     actionLabel: "Tingnan ang Presyo",
     categories: [{ name: "Gasolina", slug: "gasolina" }],
   }),
   makeFeedItem({
-    id: 102, slug: "diesel-taas-presyo-alert", contentType: "ALERT",
-    hookHeadline: "Diesel +P1.80/L — Truckers, Heads Up!",
-    subHeadline: "Pangalawang taas-presyo sa loob ng dalawang linggo.",
-    urgency: "high", priceChange: "+P1.80/L",
+    id: 102, slug: "diesel-massive-price-hike-march-24", contentType: "ALERT",
+    hookHeadline: "Diesel +P16.00 to P18.00/L — Pinakamataas na Taas-Presyo!",
+    subHeadline: "Epektibo March 24, 2026. Truckers at jeepney drivers, apektado!",
+    urgency: "critical", priceChange: "+P16.00-18.00/L",
     actionLabel: "Detalye Dito",
     categories: [{ name: "Diesel", slug: "diesel" }],
   }),
@@ -240,10 +270,10 @@ export const mockFeedItems: FeedItem[] = [
     categories: [{ name: "LPG", slug: "lpg" }],
   }),
   makeFeedItem({
-    id: 105, slug: "kerosene-price-update", contentType: "ALERT",
-    hookHeadline: "Kerosene +P0.90/L — Unang Taas sa 2026",
-    subHeadline: "Mga probinsya na gumagamit ng kerosene, apektado.",
-    urgency: "normal", priceChange: "+P0.90/L",
+    id: 105, slug: "kerosene-price-hike-march-24", contentType: "ALERT",
+    hookHeadline: "Kerosene +P15.00 to P19.00/L — Massive Price Hike!",
+    subHeadline: "Epektibo March 24, 2026. Mga probinsya na gumagamit ng kerosene, apektado.",
+    urgency: "high", priceChange: "+P15.00-19.00/L",
     categories: [{ name: "Balita", slug: "balita" }],
   }),
   makeFeedItem({
@@ -262,10 +292,10 @@ export const mockFeedItems: FeedItem[] = [
     categories: [{ name: "Diesel", slug: "diesel" }],
   }),
   makeFeedItem({
-    id: 108, slug: "fuel-tax-increase-april", contentType: "ALERT",
-    hookHeadline: "TRAIN Law: +P1.00/L Dagdag Tax sa April!",
-    subHeadline: "Susunod na tranche ng excise tax, epektibo April 1.",
-    urgency: "high", priceChange: "+P1.00/L",
+    id: 108, slug: "electricity-prices-up-oil-spike", contentType: "ALERT",
+    hookHeadline: "Electricity Prices to Go Up Higher Due to Oil Price Spike!",
+    subHeadline: "March 20, 2026. Epekto ng oil price surge, ramdam na sa kuryente.",
+    urgency: "high", priceChange: "TAAS",
     categories: [{ name: "Balita", slug: "balita" }],
   }),
   makeFeedItem({
@@ -502,13 +532,13 @@ export const mockFeedItems: FeedItem[] = [
 
 export const mockHookSlides: HookSlide[] = [
   {
-    hookText: "TAAS-PRESYO: +P2.50/L Bukas!",
-    subText: "Mag-full tank na ngayon bago tumaas ang presyo ng gasolina.",
+    hookText: "FUEL PRICE ADVISORY: Gasolina +P9 to P12/L!",
+    subText: "Epektibo March 24, 2026. Diesel +P16-18/L, Kerosene +P15-19/L. Pinakamataas na taas-presyo ngayong taon!",
     bgGradient: "from-red-600 to-orange-500",
     ctaLabel: "Tingnan ang Presyo",
     ctaHref: "/gasolina",
     urgency: "critical",
-    image: "https://images.unsplash.com/photo-1611270629569-8b357cb88da9?w=1200&h=630&fit=crop",
+    image: THUMB_GAS,
     category: "Gasolina",
   },
   {
@@ -518,7 +548,7 @@ export const mockHookSlides: HookSlide[] = [
     ctaLabel: "I-try Ko To!",
     ctaHref: "/tips",
     urgency: "normal",
-    image: "https://images.unsplash.com/photo-1449965408869-ebd3fee4f2ed?w=1200&h=630&fit=crop",
+    image: THUMB_GAS,
     category: "Tips",
   },
   {
@@ -528,28 +558,63 @@ export const mockHookSlides: HookSlide[] = [
     ctaLabel: "I-compare Ngayon",
     ctaHref: "/gasolina",
     urgency: "normal",
-    image: "https://images.unsplash.com/photo-1545262810-a7c5b3580030?w=1200&h=630&fit=crop",
+    image: THUMB_GAS,
     category: "Gasolina",
   },
   {
-    hookText: "Grab Driver: 'Paano Ako Nag-s-survive?'",
-    subText: "Real talk mula sa driver na gumagastos P800/araw sa gas.",
-    bgGradient: "from-yellow-500 to-orange-500",
+    hookText: "BTS Drops New Album 'Arirang'!",
+    subText: "Pinoy ARMY nagwala! Alamin ang tracklist at collab artists.",
+    bgGradient: "from-pink-600 to-purple-500",
     ctaLabel: "Basahin ang Kwento",
-    ctaHref: "/article/grab-driver-fuel-tips",
+    ctaHref: "/article/bts-drops-new-studio-album-arirang",
     urgency: "normal",
-    image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0afa?w=1200&h=630&fit=crop",
-    category: "Kwento",
+    image: THUMB_ENTERTAINMENT,
+    category: "Showbiz",
   },
   {
-    hookText: "DOE Oil Monitor: Rollback sa Diesel!",
-    subText: "Official: -P1.20/L rollback sa diesel, epektibo next Tuesday.",
+    hookText: "Alex Eala Reaches Miami Open 3rd Round!",
+    subText: "Pinay tennis star survives Laura Siegemund. Ipagmalaki ang Pilipinas!",
     bgGradient: "from-blue-600 to-cyan-500",
-    ctaLabel: "Buod Dito",
-    ctaHref: "/balita",
+    ctaLabel: "Full Story",
+    ctaHref: "/article/alex-eala-miami-open-third-round",
     urgency: "high",
-    image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1200&h=630&fit=crop",
-    category: "Balita",
+    image: THUMB_SPORT,
+    category: "Sports",
+  },
+];
+
+// Poll data
+export const mockPollData: PollData = {
+  question: "Saan ka madalas mag-gas?",
+  options: [
+    { id: "petron", label: "Petron", votes: 342 },
+    { id: "shell", label: "Shell", votes: 287 },
+    { id: "independent", label: "Mas murang independent brand", votes: 198 },
+  ],
+  totalVotes: 827,
+};
+
+// Homepage FAQ data
+export const mockHomeFAQs: FAQItem[] = [
+  {
+    question: "Magkano ang gasolina ngayon sa Pilipinas?",
+    answer: "Ang average na presyo ng regular gasoline sa Pilipinas ngayon ay nasa P58-63 per liter, depende sa brand at lokasyon. Ang diesel naman ay nasa P54-56 per liter. Mag-check sa aming price table para sa pinaka-updated na presyo ng bawat fuel brand.",
+  },
+  {
+    question: "Kailan ang susunod na taas-presyo o rollback?",
+    answer: "Ang fuel price adjustments sa Pilipinas ay karaniwang ina-announce tuwing Lunes at nag-take effect tuwing Martes ng 6AM. I-monitor ang aming ALERT section para sa real-time updates mula sa DOE at mga oil companies.",
+  },
+  {
+    question: "Paano mag-compare ng gas prices sa iba't ibang brand?",
+    answer: "Gamitin ang aming fuel price comparison table sa /gasolina page para makita ang side-by-side na presyo ng Petron, Shell, Caltex, Phoenix, Seaoil, at iba pang brands. Updated ito linggo-linggo base sa DOE oil monitor.",
+  },
+  {
+    question: "Ano ang pinakamura na gas station malapit sa akin?",
+    answer: "Gamitin ang aming Gas Station Map sa /mapa page para mahanap ang pinakamalapit at pinakamura na gas station sa inyong area. I-filter ayon sa brand, presyo, o amenities na kailangan mo.",
+  },
+  {
+    question: "Paano makatipid sa gasolina?",
+    answer: "May ilang proven tips para makatipid: mag-maintain ng tamang tire pressure (7% savings), mag-practice ng eco-driving techniques, gumamit ng fuel reward cards, mag-gas tuwing Martes pagkatapos ng rollback, at i-compare ang presyo bago mag-fill up. Bisitahin ang aming /tips page para sa complete guide.",
   },
 ];
 
@@ -627,3 +692,154 @@ export const mockGasStations: GasStation[] = [
   makeGasStation(17, "Total", "Total Eastwood", "Eastwood City, Quezon City", 14.6105, 121.0801, ["restroom", "convenience-store", "atm"], 4.0, "24 hours", true, 0.20),
   makeGasStation(18, "Caltex", "Caltex SLEX", "South Luzon Expressway, Muntinlupa", 14.4390, 121.0222, ["restroom", "convenience-store", "food", "car-wash"], 4.3, "24 hours", true, 0.30),
 ];
+
+// Sponsored products
+export const mockSponsoredProducts: SponsoredProduct[] = [
+  {
+    id: 1,
+    brand: "Shell",
+    productName: "Shell V-Power Nitro+",
+    description: "99 RON premium fuel para sa maximum engine performance at protection.",
+    imageUrl: THUMB_GAS,
+    ctaLabel: "Alamin Pa",
+    ctaHref: "/gasolina/shell",
+  },
+  {
+    id: 2,
+    brand: "Petron",
+    productName: "Petron Blaze 100",
+    description: "100 octane Euro 4 fuel na nagbibigay ng superior engine power.",
+    imageUrl: THUMB_GAS,
+    ctaLabel: "Alamin Pa",
+    ctaHref: "/gasolina/petron",
+  },
+  {
+    id: 3,
+    brand: "Caltex",
+    productName: "Caltex Platinum",
+    description: "Premium na gasolina na may Techron additive para sa mas malinis na engine.",
+    imageUrl: THUMB_GAS,
+    ctaLabel: "Alamin Pa",
+    ctaHref: "/gasolina/caltex",
+  },
+  {
+    id: 4,
+    brand: "Phoenix",
+    productName: "Phoenix SUPER97",
+    description: "97 octane fuel sa abot-kayang presyo. Quality fuel, mas mura pa.",
+    imageUrl: THUMB_GAS,
+    ctaLabel: "Alamin Pa",
+    ctaHref: "/gasolina/phoenix",
+  },
+  {
+    id: 5,
+    brand: "Seaoil",
+    productName: "Seaoil Extreme 97",
+    description: "High-performance fuel na consistently pinakamura sa market.",
+    imageUrl: THUMB_GAS,
+    ctaLabel: "Alamin Pa",
+    ctaHref: "/gasolina/seaoil",
+  },
+];
+
+// Weather forecast data
+export const mockWeatherForecast: WeatherForecastData = {
+  cities: [
+    { city: "Manila", temp: 34, condition: "partly-cloudy", humidity: 72 },
+    { city: "Cebu", temp: 32, condition: "sunny", humidity: 68 },
+    { city: "Davao", temp: 31, condition: "rainy", humidity: 85 },
+    { city: "Baguio", temp: 22, condition: "cloudy", humidity: 78 },
+    { city: "Iloilo", temp: 33, condition: "sunny", humidity: 70 },
+    { city: "Zamboanga", temp: 30, condition: "stormy", humidity: 90 },
+    { city: "Clark", temp: 35, condition: "sunny", humidity: 65 },
+    { city: "Subic", temp: 33, condition: "partly-cloudy", humidity: 74 },
+  ],
+  asOf: "March 23, 2026 8:00 AM",
+};
+
+// Fuel quiz data
+export const mockFuelQuizData: FuelQuizData = {
+  title: "Fuel IQ Quiz",
+  questions: [
+    {
+      id: 1,
+      question: "Anong speed ang pinaka-fuel efficient sa highway?",
+      options: ["60-70 km/h", "80-90 km/h", "100-110 km/h", "120+ km/h"],
+      correctIndex: 1,
+      explanation: "Ang 80-90 km/h ang sweet spot para sa karamihan ng sasakyan. Mas mataas dito, mas mataas ang air resistance at fuel consumption.",
+    },
+    {
+      id: 2,
+      question: "Alin ang mas matipid sa gas: AC o bukas na bintana?",
+      options: ["Palaging AC", "Palaging bukas na bintana", "AC sa highway, bintana sa city", "Pareho lang"],
+      correctIndex: 2,
+      explanation: "Sa mababa na speed (city driving), mas matipid ang bukas na bintana. Sa highway (above 80 km/h), mas matipid ang AC dahil sa air drag ng bukas na bintana.",
+    },
+    {
+      id: 3,
+      question: "Magkano ang mati-tipid mo kung tama ang tire pressure?",
+      options: ["Wala, pare-pareho lang", "Mga 3%", "Mga 7%", "Mga 15%"],
+      correctIndex: 2,
+      explanation: "Ang tamang tire pressure ay makakatipid ng hanggang 7% sa fuel. Under-inflated tires ay nag-iincrease ng rolling resistance, na nag-cocompensate ang engine.",
+    },
+  ],
+};
+
+// Fuel deals
+export const mockFuelDeals: FuelDeal[] = [
+  {
+    id: 1,
+    brand: "Shell",
+    discount: "P3 OFF/L",
+    description: "Shell Go+ members, P3 off sa V-Power gamit ang Shell Card.",
+    validUntil: "March 31, 2026",
+    dealType: "hot",
+    ctaLabel: "Kunin",
+    ctaHref: "/gasolina/shell",
+  },
+  {
+    id: 2,
+    brand: "Petron",
+    discount: "FREE 1L",
+    description: "Every 50L na fill-up, may FREE 1 liter ng Petron Blaze 100.",
+    validUntil: "April 15, 2026",
+    dealType: "new",
+    ctaLabel: "Kunin",
+    ctaHref: "/gasolina/petron",
+  },
+  {
+    id: 3,
+    brand: "Phoenix",
+    discount: "20% OFF",
+    description: "Phoenix Fuel Card holders, 20% off sa unang fill-up ng buwan.",
+    validUntil: "March 28, 2026",
+    dealType: "limited",
+    ctaLabel: "Bilisan",
+    ctaHref: "/gasolina/phoenix",
+  },
+  {
+    id: 4,
+    brand: "Seaoil",
+    discount: "P5 OFF/L",
+    description: "Seaoil PRICE LOCK promo. I-lock ang presyo ngayon, i-claim within 7 days.",
+    validUntil: "April 5, 2026",
+    dealType: "hot",
+    ctaLabel: "I-lock",
+    ctaHref: "/gasolina/seaoil",
+  },
+  {
+    id: 5,
+    brand: "Caltex",
+    discount: "2X POINTS",
+    description: "Double StarCash points sa lahat ng Caltex Platinum fill-ups.",
+    validUntil: "April 10, 2026",
+    dealType: "new",
+    ctaLabel: "Kunin",
+    ctaHref: "/gasolina/caltex",
+  },
+];
+
+// Bookmark bar data
+export const mockBookmarkBarData: BookmarkBarData = {
+  savedCount: 3,
+};

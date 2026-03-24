@@ -5,7 +5,7 @@ import Button from "@/components/ui/Button";
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "Makipag-ugnayan sa Tipid Gas PH para sa business inquiries, advertising, o fuel price reports.",
+    "Makipag-ugnayan sa Latest Balita PH para sa business inquiries, advertising, o fuel price reports.",
 };
 
 export default function ContactPage() {
@@ -106,19 +106,19 @@ export default function ContactPage() {
                 Business Inquiries
               </h3>
               <a
-                href="mailto:sales@tipidgasph.com"
+                href="mailto:sales@latestbalitaph.com"
                 className="text-orange-500 hover:text-orange-500 transition-colors"
               >
-                sales@tipidgasph.com
+                sales@latestbalitaph.com
               </a>
             </div>
             <div className="bg-white rounded-2xl border border-gray-200 p-8">
               <h3 className="font-bold text-gray-900 mb-4">PR &amp; Media</h3>
               <a
-                href="mailto:marketing@tipidgasph.com"
+                href="mailto:marketing@latestbalitaph.com"
                 className="text-orange-500 hover:text-orange-500 transition-colors"
               >
-                marketing@tipidgasph.com
+                marketing@latestbalitaph.com
               </a>
             </div>
             <div className="bg-white rounded-2xl border border-gray-200 p-8">
@@ -126,10 +126,10 @@ export default function ContactPage() {
                 Fuel Price Reports
               </h3>
               <a
-                href="mailto:editorial@tipidgasph.com"
+                href="mailto:editorial@latestbalitaph.com"
                 className="text-orange-500 hover:text-orange-500 transition-colors"
               >
-                editorial@tipidgasph.com
+                editorial@latestbalitaph.com
               </a>
             </div>
             <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl p-8 text-white">

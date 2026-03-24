@@ -48,7 +48,41 @@ export default function Header() {
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex items-center justify-between h-16">
+          {/* Mobile header row: hamburger | logo | search */}
+          <div className="flex items-center justify-between h-16 lg:hidden">
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="p-2 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+              aria-label="Toggle menu"
+            >
+              {mobileOpen ? (
+                <XMarkIcon className="w-6 h-6" />
+              ) : (
+                <Bars3Icon className="w-6 h-6" />
+              )}
+            </button>
+
+            <Link href="/" className="flex items-center gap-2">
+              <div className="w-9 h-9 bg-orange-500 rounded-lg flex items-center justify-center">
+                <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C10.5 2 9.5 3.5 9.5 5.5C9.5 7.5 10 9 10 11C8 11 6 10.5 5 9.5C4.5 10.5 4 12 4 13.5C4 18 7.5 22 12 22C16.5 22 20 18 20 13.5C20 8 16 4 14.5 3C13.5 2.3 12.5 2 12 2Z" />
+                </svg>
+              </div>
+              <span className="font-extrabold text-gray-900 text-lg">LATEST</span>{" "}
+              <span className="font-extrabold text-orange-500 text-lg">BALITA</span>
+            </Link>
+
+            <button
+              onClick={() => setSearchOpen(!searchOpen)}
+              className="p-2 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+              aria-label="Toggle search"
+            >
+              <MagnifyingGlassIcon className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Desktop header row */}
+          <div className="hidden lg:flex items-center justify-between h-16">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 flex-shrink-0">
               <div className="w-9 h-9 bg-orange-500 rounded-lg flex items-center justify-center">
@@ -56,14 +90,14 @@ export default function Header() {
                   <path d="M12 2C10.5 2 9.5 3.5 9.5 5.5C9.5 7.5 10 9 10 11C8 11 6 10.5 5 9.5C4.5 10.5 4 12 4 13.5C4 18 7.5 22 12 22C16.5 22 20 18 20 13.5C20 8 16 4 14.5 3C13.5 2.3 12.5 2 12 2Z" />
                 </svg>
               </div>
-              <div className="hidden sm:block">
-                <span className="font-extrabold text-gray-900 text-lg">TIPID</span>{" "}
-                <span className="font-extrabold text-orange-500 text-lg">GAS</span>
+              <div>
+                <span className="font-extrabold text-gray-900 text-lg">LATEST</span>{" "}
+                <span className="font-extrabold text-orange-500 text-lg">BALITA</span>
               </div>
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center gap-1">
+            <nav className="flex items-center gap-1">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -92,22 +126,10 @@ export default function Header() {
 
               <Link
                 href="/contact"
-                className="hidden sm:inline-flex px-4 py-2 bg-orange-500 text-white text-sm font-semibold rounded-lg hover:bg-orange-600 transition-colors"
+                className="inline-flex px-4 py-2 bg-orange-500 text-white text-sm font-semibold rounded-lg hover:bg-orange-600 transition-colors"
               >
                 Contact
               </Link>
-
-              <button
-                onClick={() => setMobileOpen(!mobileOpen)}
-                className="lg:hidden p-2 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
-                aria-label="Toggle menu"
-              >
-                {mobileOpen ? (
-                  <XMarkIcon className="w-6 h-6" />
-                ) : (
-                  <Bars3Icon className="w-6 h-6" />
-                )}
-              </button>
             </div>
           </div>
         </div>

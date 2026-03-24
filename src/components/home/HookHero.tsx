@@ -105,7 +105,7 @@ export default function HookHero({ slides }: HookHeroProps) {
       aria-label="Featured fuel updates"
       aria-roledescription="carousel"
     >
-      <h1 className="sr-only">Tipid Gas PH — Presyo ng Gasolina sa Pilipinas</h1>
+      <h1 className="sr-only">Latest Balita PH — Presyo ng Gasolina sa Pilipinas</h1>
 
       {/* Main slide area */}
       <div className="relative aspect-[16/9] sm:aspect-[2/1] md:aspect-[2.4/1] lg:aspect-[3/1] min-h-[360px] md:min-h-[420px]">

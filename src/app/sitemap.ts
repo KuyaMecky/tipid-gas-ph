@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { mockArticles, mockCategories, mockFuelPrices } from "@/lib/mock-data";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://tipidgasph.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://latestbalitaph.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [

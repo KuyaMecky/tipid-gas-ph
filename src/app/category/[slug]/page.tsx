@@ -17,9 +17,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${title} News`,
-    description: `Pinakabagong ${title.toLowerCase()} balita at updates mula sa Tipid Gas PH.`,
+    description: `Pinakabagong ${title.toLowerCase()} balita at updates mula sa Latest Balita PH.`,
     openGraph: {
-      title: `${title} News | Tipid Gas PH`,
+      title: `${title} News | Latest Balita PH`,
       description: `Pinakabagong ${title.toLowerCase()} balita at updates.`,
     },
   };
