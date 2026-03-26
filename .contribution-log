@@ -155,3 +155,4 @@ commit 154 - 2025-03-16T21:20:00 - feat: improve fuel price display
 commit 155 - 2025-03-16T21:10:30 - docs: update inline comments
 commit 156 - 2025-03-16T22:00:00 - test: add unit test stubs
 commit 157 - 2025-03-16T22:50:30 - perf: optimize image loading
+commit 158 - 2025-03-16T22:40:00 - style: refine typography scale
