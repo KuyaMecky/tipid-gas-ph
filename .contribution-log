@@ -185,3 +185,4 @@ commit 184 - 2025-03-17T09:21:59 - feat: improve fuel price display
 commit 185 - 2025-03-17T09:11:29 - docs: update inline comments
 commit 186 - 2025-03-17T09:01:59 - test: add unit test stubs
 commit 187 - 2025-03-17T09:51:29 - perf: optimize image loading
+commit 188 - 2025-03-17T09:41:59 - style: refine typography scale
