@@ -252,3 +252,4 @@ commit 251 - 2025-03-17T15:11:29 - feat: enhance map interaction
 commit 252 - 2025-03-17T15:01:59 - style: update color tokens
 commit 253 - 2025-03-17T15:51:29 - fix: resolve hydration mismatch
 commit 254 - 2025-03-17T15:41:59 - chore: clean up unused imports
+commit 255 - 2025-03-17T15:31:29 - feat: add loading skeleton
