@@ -236,3 +236,4 @@ commit 235 - 2025-03-17T14:51:29 - refactor: modularize feed components
 commit 236 - 2025-03-17T14:41:59 - fix: correct date formatting
 commit 237 - 2025-03-17T14:31:29 - feat: improve station filtering
 commit 238 - 2025-03-17T14:21:59 - chore: update type definitions
+commit 239 - 2025-03-17T14:11:29 - style: enhance gradient overlays
