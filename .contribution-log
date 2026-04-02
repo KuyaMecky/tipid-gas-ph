@@ -331,3 +331,4 @@ commit 330 - 2025-03-17T22:01:59 - refactor: optimize component rendering
 commit 331 - 2025-03-17T22:51:29 - style: adjust spacing and padding
 commit 332 - 2025-03-17T22:41:59 - fix: resolve mobile layout issue
 commit 333 - 2025-03-17T22:31:29 - chore: update dependencies
+commit 334 - 2025-03-17T23:21:59 - feat: improve fuel price display
