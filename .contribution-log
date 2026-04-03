@@ -368,3 +368,4 @@ commit 367 - 2025-03-18T10:52:28 - perf: optimize image loading
 commit 368 - 2025-03-18T11:42:58 - style: refine typography scale
 commit 369 - 2025-03-18T11:32:28 - fix: correct responsive breakpoints
 commit 370 - 2025-03-18T11:22:58 - refactor: simplify state management
+commit 371 - 2025-03-18T11:12:28 - feat: enhance map interaction
