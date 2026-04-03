@@ -366,3 +366,4 @@ commit 365 - 2025-03-18T10:12:28 - docs: update inline comments
 commit 366 - 2025-03-18T10:02:58 - test: add unit test stubs
 commit 367 - 2025-03-18T10:52:28 - perf: optimize image loading
 commit 368 - 2025-03-18T11:42:58 - style: refine typography scale
+commit 369 - 2025-03-18T11:32:28 - fix: correct responsive breakpoints
