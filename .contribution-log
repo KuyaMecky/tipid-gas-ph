@@ -379,3 +379,4 @@ commit 378 - 2025-03-18T11:02:58 - fix: correct price calculation
 commit 379 - 2025-03-18T12:52:28 - feat: improve search functionality
 commit 380 - 2025-03-18T12:42:58 - style: adjust mobile nav spacing
 commit 381 - 2025-03-18T12:32:28 - perf: reduce bundle size
+commit 382 - 2025-03-18T12:22:58 - fix: resolve scroll behavior
