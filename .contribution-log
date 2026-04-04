@@ -387,3 +387,4 @@ commit 386 - 2025-03-18T12:42:58 - fix: correct date formatting
 commit 387 - 2025-03-18T12:32:28 - feat: improve station filtering
 commit 388 - 2025-03-18T12:22:58 - chore: update type definitions
 commit 389 - 2025-03-18T12:12:28 - style: enhance gradient overlays
+commit 390 - 2025-03-18T13:02:58 - refactor: optimize component rendering
