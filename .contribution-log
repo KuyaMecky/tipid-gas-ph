@@ -402,3 +402,4 @@ commit 401 - 2025-03-18T14:12:28 - feat: enhance map interaction
 commit 402 - 2025-03-18T14:02:58 - style: update color tokens
 commit 403 - 2025-03-18T14:52:28 - fix: resolve hydration mismatch
 commit 404 - 2025-03-18T14:42:58 - chore: clean up unused imports
+commit 405 - 2025-03-18T14:32:28 - feat: add loading skeleton
