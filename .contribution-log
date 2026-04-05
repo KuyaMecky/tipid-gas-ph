@@ -406,3 +406,4 @@ commit 405 - 2025-03-18T14:32:28 - feat: add loading skeleton
 commit 406 - 2025-03-18T14:22:58 - style: improve card shadows
 commit 407 - 2025-03-18T14:12:28 - refactor: extract utility function
 commit 408 - 2025-03-18T14:02:58 - fix: correct price calculation
+commit 409 - 2025-03-18T14:52:28 - feat: improve search functionality
