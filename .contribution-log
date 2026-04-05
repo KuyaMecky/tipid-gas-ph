@@ -421,3 +421,4 @@ commit 420 - 2025-03-18T15:02:58 - refactor: optimize component rendering
 commit 421 - 2025-03-18T15:52:28 - style: adjust spacing and padding
 commit 422 - 2025-03-18T15:42:58 - fix: resolve mobile layout issue
 commit 423 - 2025-03-18T16:32:28 - chore: update dependencies
+commit 424 - 2025-03-18T16:22:58 - feat: improve fuel price display
