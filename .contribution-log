@@ -463,3 +463,4 @@ commit 462 - 2025-03-18T19:02:58 - style: update color tokens
 commit 463 - 2025-03-18T19:52:28 - fix: resolve hydration mismatch
 commit 464 - 2025-03-18T19:42:58 - chore: clean up unused imports
 commit 465 - 2025-03-18T19:32:28 - feat: add loading skeleton
+commit 466 - 2025-03-18T19:22:58 - style: improve card shadows
