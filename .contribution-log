@@ -513,3 +513,4 @@ day4 commit 11 - 2025-03-15T09:38:20 - chore: configure ESLint and Prettier
 day4 commit 12 - 2025-03-15T09:36:00 - feat: add Framer Motion dependency
 day4 commit 13 - 2025-03-15T09:34:40 - feat: set up Leaflet and react-leaflet
 day4 commit 14 - 2025-03-15T09:32:20 - feat: add heroicons package
+day4 commit 15 - 2025-03-15T09:30:00 - chore: configure next.config for images
