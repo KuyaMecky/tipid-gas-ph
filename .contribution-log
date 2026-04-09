@@ -526,3 +526,4 @@ day4 commit 24 - 2025-03-15T10:12:00 - chore: set up project dependencies
 day4 commit 25 - 2025-03-15T10:10:40 - feat: initial project scaffolding and config
 day4 commit 26 - 2025-03-15T10:08:20 - feat: set up Next.js 16 app router structure
 day4 commit 27 - 2025-03-15T11:06:00 - feat: add Tailwind CSS v4 theme tokens
+day4 commit 28 - 2025-03-15T11:04:40 - feat: configure font stack (Poppins, Noto Sans, Inter)
