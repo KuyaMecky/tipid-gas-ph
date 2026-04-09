@@ -3,10 +3,16 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { mockFuelPrices } from "@/lib/mock-data";
+import type { FuelPrice } from "@/lib/types";
 import { format } from "date-fns";
 
-export default function FuelPriceWidget() {
-  const topBrands = mockFuelPrices.slice(0, 5);
+interface FuelPriceWidgetProps {
+  prices?: FuelPrice[];
+}
+
+export default function FuelPriceWidget({ prices }: FuelPriceWidgetProps) {
+  const allPrices = prices && prices.length > 0 ? prices : mockFuelPrices;
+  const topBrands = allPrices.slice(0, 5);
   const lastUpdated = format(new Date(topBrands[0].lastUpdated), "MMM d, yyyy h:mm a");
 
   return (

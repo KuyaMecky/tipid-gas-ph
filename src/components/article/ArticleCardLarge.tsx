@@ -31,7 +31,7 @@ export default function ArticleCardLarge({ article }: ArticleCardLargeProps) {
               src={article.featuredImage.url}
               alt={article.featuredImage.alt}
               fill
-              className="object-contain group-hover:scale-105 transition-transform duration-500"
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
               sizes="(max-width: 768px) 100vw, 50vw"
               priority
             />

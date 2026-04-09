@@ -4,9 +4,12 @@ import FuelPriceTable from "@/components/article/FuelPriceTable";
 import FAQSection from "@/components/ui/FAQSection";
 import AdSlot from "@/components/ui/AdSlot";
 import ArticleCard from "@/components/article/ArticleCard";
-import { mockFuelPrices, mockArticles } from "@/lib/mock-data";
+import { mockArticles } from "@/lib/mock-data";
+import { getFuelPrices } from "@/lib/fuel-prices";
 import Link from "next/link";
 import type { FAQItem } from "@/lib/types";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://latestbalita.ph";
 
 interface Props {
   params: Promise<{ brand: string }>;
@@ -14,18 +17,28 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { brand } = await params;
-  const fuelBrand = mockFuelPrices.find((f) => f.brandSlug === brand);
+  const allPrices = await getFuelPrices();
+  const fuelBrand = allPrices.find((f) => f.brandSlug === brand);
   const brandName = fuelBrand?.brand ?? brand.charAt(0).toUpperCase() + brand.slice(1);
 
   return {
     title: `Presyo ng ${brandName} Gasoline — Updated Daily`,
     description: `Alamin ang pinakabagong presyo ng gasolina, diesel, at premium fuel sa ${brandName}. Regular: ₱${fuelBrand?.regular.toFixed(2) ?? "N/A"}, Diesel: ₱${fuelBrand?.diesel.toFixed(2) ?? "N/A"}.`,
+    alternates: {
+      canonical: `${siteUrl}/gasolina/${brand}`,
+    },
+    openGraph: {
+      title: `Presyo ng ${brandName} Gasoline — Updated Daily | Latest Balita PH`,
+      description: `Alamin ang pinakabagong presyo ng gasolina, diesel, at premium fuel sa ${brandName}.`,
+      type: "website",
+    },
   };
 }
 
 export default async function BrandPage({ params }: Props) {
   const { brand } = await params;
-  const fuelBrand = mockFuelPrices.find((f) => f.brandSlug === brand);
+  const allPrices = await getFuelPrices();
+  const fuelBrand = allPrices.find((f) => f.brandSlug === brand);
   const brandName = fuelBrand?.brand ?? brand.charAt(0).toUpperCase() + brand.slice(1);
 
   const brandFAQs: FAQItem[] = [
@@ -47,6 +60,35 @@ export default async function BrandPage({ params }: Props) {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
+      {/* BreadcrumbList JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: siteUrl,
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Presyo ng Gas",
+                item: `${siteUrl}/gasolina`,
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: brandName,
+              },
+            ],
+          }),
+        }}
+      />
       {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-sm text-gray-400 mb-6">
         <Link href="/" className="hover:text-orange-500 transition-colors">Home</Link>
@@ -92,7 +134,7 @@ export default async function BrandPage({ params }: Props) {
 
       {/* All brands comparison */}
       <AnimatedSection delay={0.15}>
-        <FuelPriceTable caption={`I-compare ang ${brandName} sa iba pang fuel brands`} />
+        <FuelPriceTable prices={allPrices} caption={`I-compare ang ${brandName} sa iba pang fuel brands`} />
       </AnimatedSection>
 
       <AdSlot size="in-article" className="my-8" />

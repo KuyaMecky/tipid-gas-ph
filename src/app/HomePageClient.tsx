@@ -39,10 +39,11 @@ import MobileDealsSection from "@/components/mobile/MobileDealsSection";
 import MobileSponsoredCarousel from "@/components/mobile/MobileSponsoredCarousel";
 import MobileFuelQuiz from "@/components/mobile/MobileFuelQuiz";
 import MobileBookmarkBar from "@/components/mobile/MobileBookmarkBar";
+import MobileBrandPartners from "@/components/mobile/MobileBrandPartners";
 import TrendingNewsSection from "@/components/home/TrendingNewsSection";
 import FuelNewsHeroBanner from "@/components/home/FuelNewsHeroBanner";
 import FAQSection from "@/components/ui/FAQSection";
-import type { FeedContentType, TrendingNewsItem } from "@/lib/types";
+import type { Category, FeedContentType, FeedItem, FuelPrice, TrendingNewsItem, HookSlide } from "@/lib/types";
 import { mockFeedItems, mockHookSlides, mockFuelPrices, mockPollData, mockHomeFAQs, mockCategories, mockWeatherForecast, mockSponsoredProducts, mockFuelQuizData, mockFuelDeals, mockBookmarkBarData } from "@/lib/mock-data";
 
 const quickLinks = [
@@ -68,22 +69,51 @@ const INITIAL_VISIBLE = 12;
 interface HomePageClientProps {
   trendingNews?: TrendingNewsItem[];
   fuelNews?: TrendingNewsItem[];
+  wpFeedItems?: FeedItem[];
+  wpCategories?: Category[];
+  fuelPrices?: FuelPrice[];
+  rssNews?: TrendingNewsItem[];
+  hookHeroSlides?: HookSlide[];
 }
 
-export default function HomePageClient({ trendingNews = [], fuelNews = [] }: HomePageClientProps) {
+export default function HomePageClient({ trendingNews = [], fuelNews = [], wpFeedItems = [], wpCategories, fuelPrices, rssNews = [], hookHeroSlides }: HomePageClientProps) {
+  const prices = fuelPrices && fuelPrices.length > 0 ? fuelPrices : mockFuelPrices;
+  // Merge RSS news into trending (RSS first since it's real-time, then NewsData.io)
+  const allTrendingNews = useMemo(() => {
+    if (rssNews.length === 0) return trendingNews;
+    if (trendingNews.length === 0) return rssNews;
+    const seen = new Set<string>();
+    const merged: TrendingNewsItem[] = [];
+    for (const item of [...rssNews, ...trendingNews]) {
+      const key = item.title.toLowerCase().slice(0, 40);
+      if (!seen.has(key)) {
+        seen.add(key);
+        merged.push(item);
+      }
+    }
+    return merged;
+  }, [rssNews, trendingNews]);
   const [activeFilter, setActiveFilter] = useState<FeedContentType | "ALL">("ALL");
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
   const [mobileTab, setMobileTab] = useState("trending");
 
-  const breakingItem = mockFeedItems.find(
+  // Merge WP feed items at the front, then fill with mock data (dedup by id)
+  const allFeedItems = useMemo(() => {
+    if (wpFeedItems.length === 0) return mockFeedItems;
+    const wpIds = new Set(wpFeedItems.map((i) => i.id));
+    const remaining = mockFeedItems.filter((i) => !wpIds.has(i.id));
+    return [...wpFeedItems, ...remaining];
+  }, [wpFeedItems]);
+
+  const breakingItem = allFeedItems.find(
     (item) => item.isBreaking && item.urgency === "critical"
   );
 
   // Desktop feed filtering
   const filteredItems = useMemo(() => {
-    if (activeFilter === "ALL") return mockFeedItems;
-    return mockFeedItems.filter((item) => item.contentType === activeFilter);
-  }, [activeFilter]);
+    if (activeFilter === "ALL") return allFeedItems;
+    return allFeedItems.filter((item) => item.contentType === activeFilter);
+  }, [activeFilter, allFeedItems]);
 
   const visibleItems = filteredItems.slice(0, visibleCount);
   const hasMore = visibleCount < filteredItems.length;
@@ -97,20 +127,20 @@ export default function HomePageClient({ trendingNews = [], fuelNews = [] }: Hom
 
   // Mobile: split feed items by content type
   const mobileAlertItems = useMemo(
-    () => mockFeedItems.filter((item) => item.contentType === "ALERT"),
-    []
+    () => allFeedItems.filter((item) => item.contentType === "ALERT"),
+    [allFeedItems]
   );
   const mobileBalitaItems = useMemo(
-    () => mockFeedItems.filter((item) => item.contentType === "BALITA"),
-    []
+    () => allFeedItems.filter((item) => item.contentType === "BALITA"),
+    [allFeedItems]
   );
   const mobileTipidItems = useMemo(
-    () => mockFeedItems.filter((item) => item.contentType === "TIPID"),
-    []
+    () => allFeedItems.filter((item) => item.contentType === "TIPID"),
+    [allFeedItems]
   );
   const mobileKwentoItems = useMemo(
-    () => mockFeedItems.filter((item) => item.contentType === "KWENTO"),
-    []
+    () => allFeedItems.filter((item) => item.contentType === "KWENTO"),
+    [allFeedItems]
   );
 
   function handleFilterChange(value: FeedContentType | "ALL") {
@@ -125,10 +155,8 @@ export default function HomePageClient({ trendingNews = [], fuelNews = [] }: Hom
 
       {/* ===== MOBILE LAYOUT ===== */}
       <div className="lg:hidden">
-        {/* 0. Fuel News Banner — real-time gas prices + news */}
-        {fuelNews.length > 0 && (
-          <MobileFuelNewsBanner fuelNews={fuelNews} prices={mockFuelPrices} />
-        )}
+        {/* 0. Fuel News Banner — real-time gas prices + news (always renders with fallback chain) */}
+        <MobileFuelNewsBanner fuelNews={fuelNews} prices={prices} />
 
         {/* 1. Category Tabs */}
         <MobileCategoryTabs activeTab={mobileTab} onTabChange={setMobileTab} />
@@ -149,7 +177,7 @@ export default function HomePageClient({ trendingNews = [], fuelNews = [] }: Hom
 
         {/* 6. Popular Categories */}
         <div className="mt-6">
-          <MobilePopularCategories categories={mockCategories} />
+          <MobilePopularCategories categories={wpCategories && wpCategories.length > 0 ? wpCategories : mockCategories} />
         </div>
 
         {/* 4. Ad Slot */}
@@ -167,10 +195,15 @@ export default function HomePageClient({ trendingNews = [], fuelNews = [] }: Hom
           <MobileDealsSection deals={mockFuelDeals} />
         </div>
 
+        {/* 8b. Brand Partners */}
+        <div className="mt-6">
+          <MobileBrandPartners />
+        </div>
+
         {/* 9. Trending News — Real-time from NewsData.io */}
-        {trendingNews.length > 0 && (
+        {allTrendingNews.length > 0 && (
           <div className="mt-6">
-            <MobileTrendingNews items={trendingNews} />
+            <MobileTrendingNews items={allTrendingNews} />
           </div>
         )}
 
@@ -280,16 +313,14 @@ export default function HomePageClient({ trendingNews = [], fuelNews = [] }: Hom
 
       {/* ===== DESKTOP LAYOUT ===== */}
       <div className="hidden lg:block">
-        {/* Hook Hero */}
-        <HookHero slides={mockHookSlides} />
+        {/* Hook Hero — real WP featured articles, fallback to mock */}
+        <HookHero slides={hookHeroSlides && hookHeroSlides.length > 0 ? hookHeroSlides : mockHookSlides} />
 
-        {/* Fuel News Hero Banner — real-time gas prices + news */}
-        {fuelNews.length > 0 && (
-          <FuelNewsHeroBanner fuelNews={fuelNews} prices={mockFuelPrices} />
-        )}
+        {/* Fuel News Hero Banner — always renders with fallback chain */}
+        <FuelNewsHeroBanner fuelNews={fuelNews} prices={prices} />
 
         {/* Quick Price Strip */}
-        <QuickPriceStrip prices={mockFuelPrices} />
+        <QuickPriceStrip prices={prices} />
 
         {/* Feed + Sidebar Layout */}
         <div className="max-w-7xl mx-auto px-4 py-6">
@@ -341,15 +372,16 @@ export default function HomePageClient({ trendingNews = [], fuelNews = [] }: Hom
                       Popular na Kategorya
                     </h2>
                     <div className="grid grid-cols-3 gap-3">
-                      {mockCategories.map((cat) => {
-                        const colorMap: Record<string, { gradient: string; badge: string; Icon: React.ComponentType<React.SVGProps<SVGSVGElement>> }> = {
-                          gasolina: { gradient: "from-yellow-900/80 via-yellow-700/50 to-yellow-500/20", badge: "bg-yellow-500", Icon: FireIcon },
-                          diesel: { gradient: "from-blue-900/80 via-blue-700/50 to-blue-500/20", badge: "bg-blue-600", Icon: TruckIcon },
-                          lpg: { gradient: "from-amber-900/80 via-amber-700/50 to-amber-500/20", badge: "bg-amber-500", Icon: BoltIcon },
-                          balita: { gradient: "from-red-900/80 via-red-700/50 to-red-500/20", badge: "bg-red-600", Icon: NewspaperIcon },
-                          tips: { gradient: "from-emerald-900/80 via-emerald-700/50 to-emerald-500/20", badge: "bg-emerald-500", Icon: LightBulbIcon },
-                          eleksyon: { gradient: "from-orange-900/80 via-orange-700/50 to-orange-500/20", badge: "bg-orange-500", Icon: MegaphoneIcon },
-                          showbiz: { gradient: "from-pink-900/80 via-pink-700/50 to-pink-500/20", badge: "bg-pink-500", Icon: StarIcon },
+                      {(wpCategories && wpCategories.length > 0 ? wpCategories : mockCategories).map((cat) => {
+                        const colorMap: Record<string, { badge: string; image: string; Icon: React.ComponentType<React.SVGProps<SVGSVGElement>> }> = {
+                          gasolina: { badge: "bg-yellow-500", image: "/images/categories/gasolina.jpg", Icon: FireIcon },
+                          diesel: { badge: "bg-blue-600", image: "/images/categories/diesel.jpg", Icon: TruckIcon },
+                          lpg: { badge: "bg-amber-500", image: "/images/categories/lpg.jpg", Icon: BoltIcon },
+                          balita: { badge: "bg-red-600", image: "/images/categories/balita.jpg", Icon: NewspaperIcon },
+                          tips: { badge: "bg-emerald-500", image: "/images/categories/tips.jpg", Icon: LightBulbIcon },
+                          eleksyon: { badge: "bg-orange-500", image: "/images/categories/eleksyon.jpg", Icon: MegaphoneIcon },
+                          showbiz: { badge: "bg-pink-500", image: "/images/categories/showbiz.jpg", Icon: StarIcon },
+                          sports: { badge: "bg-teal-500", image: "/images/categories/sports.jpg", Icon: StarIcon },
                         };
                         const meta = colorMap[cat.slug] || colorMap.balita;
                         const { Icon } = meta;
@@ -364,18 +396,14 @@ export default function HomePageClient({ trendingNews = [], fuelNews = [] }: Hom
                             className="block relative rounded-2xl overflow-hidden group"
                           >
                             <div className="aspect-[4/3] relative">
-                              {cat.image ? (
-                                <Image
-                                  src={cat.image}
-                                  alt={cat.name}
-                                  fill
-                                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                                  sizes="33vw"
-                                />
-                              ) : (
-                                <div className="w-full h-full bg-gray-200" />
-                              )}
-                              <div className={`absolute inset-0 bg-gradient-to-t ${meta.gradient}`} />
+                              <Image
+                                src={meta.image}
+                                alt={cat.name}
+                                fill
+                                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                                sizes="33vw"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                               {/* Icon — top-right */}
                               <div className="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
                                 <Icon className="w-5 h-5 text-white" />
@@ -423,9 +451,9 @@ export default function HomePageClient({ trendingNews = [], fuelNews = [] }: Hom
                     </section>
                   )}
 
-                  {/* Trending News — Real-time from NewsData.io */}
-                  {trendingNews.length > 0 && (
-                    <TrendingNewsSection items={trendingNews} />
+                  {/* Trending News — Real-time from RSS + NewsData.io */}
+                  {allTrendingNews.length > 0 && (
+                    <TrendingNewsSection items={allTrendingNews} />
                   )}
 
                   {/* Map Preview */}

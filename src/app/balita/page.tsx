@@ -3,7 +3,7 @@ import AnimatedSection from "@/components/ui/AnimatedSection";
 import ArticleCard from "@/components/article/ArticleCard";
 import AdSlot from "@/components/ui/AdSlot";
 import DesktopSidebar from "@/components/sidebar/DesktopSidebar";
-import { mockArticles } from "@/lib/mock-data";
+import { getArticles } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Balita — Fuel Industry News sa Pilipinas",
@@ -11,8 +11,8 @@ export const metadata: Metadata = {
     "Pinakabagong balita tungkol sa fuel industry sa Pilipinas. Oil price updates, DOE announcements, at mga development sa energy sector.",
 };
 
-export default function BalitaPage() {
-  const newsArticles = mockArticles;
+export default async function BalitaPage() {
+  const { data: newsArticles } = await getArticles(1, 20);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">

@@ -1,0 +1,12 @@
+[
+  { "brand": "Petron", "brandSlug": "petron", "unleaded": 91.85, "regular": 87.50, "diesel": 121.10, "premium": 101.70, "lastUpdated": "2026-04-03T06:00:00Z" },
+  { "brand": "Shell", "brandSlug": "shell", "unleaded": 92.50, "regular": 88.20, "diesel": 121.80, "premium": 102.50, "lastUpdated": "2026-04-03T06:00:00Z" },
+  { "brand": "Caltex", "brandSlug": "caltex", "unleaded": 92.25, "regular": 87.85, "diesel": 121.40, "premium": 102.15, "lastUpdated": "2026-04-03T06:00:00Z" },
+  { "brand": "Phoenix", "brandSlug": "phoenix", "unleaded": 90.60, "regular": 86.75, "diesel": 119.90, "premium": 100.35, "lastUpdated": "2026-04-03T06:00:00Z" },
+  { "brand": "Seaoil", "brandSlug": "seaoil", "unleaded": 90.15, "regular": 86.25, "diesel": 119.30, "premium": 99.85, "lastUpdated": "2026-04-03T06:00:00Z" },
+  { "brand": "PTT", "brandSlug": "ptt", "unleaded": 90.95, "regular": 87.05, "diesel": 120.20, "premium": 100.75, "lastUpdated": "2026-04-03T06:00:00Z" },
+  { "brand": "Unioil", "brandSlug": "unioil", "unleaded": 90.45, "regular": 86.55, "diesel": 119.60, "premium": 100.15, "lastUpdated": "2026-04-03T06:00:00Z" },
+  { "brand": "Cleanfuel", "brandSlug": "cleanfuel", "unleaded": 89.75, "regular": 85.85, "diesel": 118.80, "premium": 99.35, "lastUpdated": "2026-04-03T06:00:00Z" },
+  { "brand": "Jetti", "brandSlug": "jetti", "unleaded": 90.35, "regular": 86.35, "diesel": 119.40, "premium": 99.95, "lastUpdated": "2026-04-03T06:00:00Z" },
+  { "brand": "Total", "brandSlug": "total", "unleaded": 91.55, "regular": 87.35, "diesel": 120.80, "premium": 101.35, "lastUpdated": "2026-04-03T06:00:00Z" }
+]

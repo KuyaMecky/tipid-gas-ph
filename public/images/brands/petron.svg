@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" rx="24" fill="#0047AB"/>
+  <circle cx="100" cy="80" r="45" fill="none" stroke="#FF6B00" stroke-width="8"/>
+  <path d="M80 60 L100 35 L120 60" fill="#FF6B00"/>
+  <text x="100" y="155" text-anchor="middle" font-family="Arial Black, sans-serif" font-weight="900" font-size="32" fill="white" letter-spacing="2">PETRON</text>
+</svg>

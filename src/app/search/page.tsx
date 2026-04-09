@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SearchPageClient from "./SearchPageClient";
+import { searchArticles } from "@/lib/content";
 
 interface Props {
   searchParams: Promise<{ q?: string }>;
@@ -10,8 +11,8 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   return {
     title: q ? `Search: ${q}` : "Search",
     description: q
-      ? `Search results for "${q}" on Philippine Developer News`
-      : "Search articles on Philippine Developer News",
+      ? `Search results for "${q}" on Latest Balita PH`
+      : "Search articles on Latest Balita PH",
     robots: { index: false, follow: true },
   };
 }
@@ -19,8 +20,9 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 export default async function SearchPage({ searchParams }: Props) {
   const { q } = await searchParams;
 
-  // In production:
-  // const { data: results, total } = await searchPosts(q || "", 1, 20);
+  const results = q
+    ? await searchArticles(q, 1, 20)
+    : { data: [], total: 0, totalPages: 0 };
 
-  return <SearchPageClient query={q || ""} />;
+  return <SearchPageClient query={q || ""} initialResults={results.data} total={results.total} />;
 }

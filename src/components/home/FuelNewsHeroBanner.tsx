@@ -11,19 +11,20 @@ import {
 } from "@heroicons/react/20/solid";
 import { FireIcon, ClockIcon } from "@heroicons/react/24/solid";
 import type { TrendingNewsItem, FuelPrice } from "@/lib/types";
+import { proxyImageUrl } from "@/lib/image-proxy";
 
 interface FuelNewsHeroBannerProps {
   fuelNews: TrendingNewsItem[];
   prices: FuelPrice[];
 }
 
-// March 24, 2026 Fuel Price Advisory
+// April 3, 2026 Fuel Price Advisory (continued rollback)
 const weeklyChanges: Record<string, number> = {
-  Petron: 10.50,
-  Shell: 12.00,
-  Caltex: 11.00,
-  Phoenix: 9.00,
-  Seaoil: 9.50,
+  Petron: -5.50,
+  Shell: -5.50,
+  Caltex: -5.50,
+  Phoenix: -5.50,
+  Seaoil: -5.50,
 };
 
 export default function FuelNewsHeroBanner({ fuelNews, prices }: FuelNewsHeroBannerProps) {
@@ -77,7 +78,7 @@ export default function FuelNewsHeroBanner({ fuelNews, prices }: FuelNewsHeroBan
                 <div className="relative aspect-[16/9] lg:aspect-[2.2/1]">
                   {heroArticle.imageUrl ? (
                     <Image
-                      src={heroArticle.imageUrl}
+                      src={proxyImageUrl(heroArticle.imageUrl) || heroArticle.imageUrl}
                       alt={heroArticle.title}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -87,7 +88,7 @@ export default function FuelNewsHeroBanner({ fuelNews, prices }: FuelNewsHeroBan
                   ) : (
                     <div className="w-full h-full bg-gradient-to-br from-red-900 to-yellow-700" />
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/40" />
 
                   {/* Badge */}
                   <div className="absolute top-3 left-3 flex items-center gap-2">
@@ -96,6 +97,13 @@ export default function FuelNewsHeroBanner({ fuelNews, prices }: FuelNewsHeroBan
                     </span>
                     <ArrowTopRightOnSquareIcon className="w-3.5 h-3.5 text-white/50" />
                   </div>
+                  {heroArticle.imageCredit && (
+                    <div className="absolute top-3 right-3 z-10">
+                      <span className="px-2 py-0.5 bg-black/50 backdrop-blur-sm rounded text-[9px] text-white/70">
+                        {heroArticle.imageCredit}
+                      </span>
+                    </div>
+                  )}
 
                   {/* Content */}
                   <div className="absolute bottom-0 left-0 right-0 p-4 lg:p-5">
@@ -146,7 +154,7 @@ export default function FuelNewsHeroBanner({ fuelNews, prices }: FuelNewsHeroBan
                     <div className="relative w-16 h-16 sm:w-full sm:h-24 flex-shrink-0 rounded-lg overflow-hidden">
                       {item.imageUrl ? (
                         <Image
-                          src={item.imageUrl}
+                          src={proxyImageUrl(item.imageUrl) || item.imageUrl}
                           alt={item.title}
                           fill
                           className="object-cover"

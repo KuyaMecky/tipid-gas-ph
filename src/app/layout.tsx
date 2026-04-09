@@ -33,7 +33,7 @@ const siteName =
 const siteDescription =
   process.env.NEXT_PUBLIC_SITE_DESCRIPTION ||
   "Presyo ng gasolina, diesel, at LPG sa Pilipinas — updated daily. Magtipid sa gas gamit ang real-time fuel price comparison.";
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://latestbalitaph.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://latestbalita.ph";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -49,14 +49,6 @@ export const metadata: Metadata = {
     siteName,
     title: siteName,
     description: siteDescription,
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: siteName,
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -77,6 +69,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: siteUrl,
   },
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
+  },
 };
 
 export default function RootLayout({
@@ -86,6 +81,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fil" className={`${poppins.variable} ${notoSans.variable} ${inter.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://latestbalita.ph" />
+        <link rel="dns-prefetch" href="https://latestbalita.ph" />
+      </head>
       <body className="antialiased min-h-screen flex flex-col font-sans">
         <Header />
         <main className="flex-1 pb-16 lg:pb-0">{children}</main>

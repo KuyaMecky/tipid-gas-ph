@@ -106,19 +106,19 @@ export default function ContactPage() {
                 Business Inquiries
               </h3>
               <a
-                href="mailto:sales@latestbalitaph.com"
+                href="mailto:sales@latestbalita.ph"
                 className="text-orange-500 hover:text-orange-500 transition-colors"
               >
-                sales@latestbalitaph.com
+                sales@latestbalita.ph
               </a>
             </div>
             <div className="bg-white rounded-2xl border border-gray-200 p-8">
               <h3 className="font-bold text-gray-900 mb-4">PR &amp; Media</h3>
               <a
-                href="mailto:marketing@latestbalitaph.com"
+                href="mailto:marketing@latestbalita.ph"
                 className="text-orange-500 hover:text-orange-500 transition-colors"
               >
-                marketing@latestbalitaph.com
+                marketing@latestbalita.ph
               </a>
             </div>
             <div className="bg-white rounded-2xl border border-gray-200 p-8">
@@ -126,10 +126,10 @@ export default function ContactPage() {
                 Fuel Price Reports
               </h3>
               <a
-                href="mailto:editorial@latestbalitaph.com"
+                href="mailto:editorial@latestbalita.ph"
                 className="text-orange-500 hover:text-orange-500 transition-colors"
               >
-                editorial@latestbalitaph.com
+                editorial@latestbalita.ph
               </a>
             </div>
             <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl p-8 text-white">

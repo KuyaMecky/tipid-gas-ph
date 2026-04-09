@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" rx="24" fill="#059669"/>
+  <circle cx="100" cy="75" r="35" fill="#34D399"/>
+  <path d="M85 65 L95 85 L105 55 L115 80 L125 65" fill="none" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="100" cy="75" r="35" fill="none" stroke="white" stroke-width="3"/>
+  <text x="100" y="145" text-anchor="middle" font-family="Arial Black, sans-serif" font-weight="900" font-size="18" fill="white" letter-spacing="1">CLEANFUEL</text>
+  <text x="100" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-weight="600" font-size="12" fill="#A7F3D0" letter-spacing="3">GREEN ENERGY</text>
+</svg>

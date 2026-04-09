@@ -34,7 +34,7 @@ export default function MobileSponsoredCarousel({ products }: MobileSponsoredCar
                 src={product.imageUrl}
                 alt={product.productName}
                 fill
-                className="object-contain"
+                className="object-cover"
                 sizes="240px"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />

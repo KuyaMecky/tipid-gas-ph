@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import ArticlePageClient from "./ArticlePageClient";
-import { mockArticles } from "@/lib/mock-data";
+import { getArticleBySlug, getRelatedArticles } from "@/lib/content";
 import { stripHtml } from "@/lib/utils";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://latestbalita.ph";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -9,15 +12,20 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
+  const article = await getArticleBySlug(slug);
 
-  // In production: const article = await getPostBySlug(slug);
-  const article = mockArticles.find((a) => a.slug === slug) ?? mockArticles[0];
+  if (!article) {
+    return { title: "Article Not Found" };
+  }
 
   const description = stripHtml(article.excerpt).slice(0, 160);
 
   return {
     title: article.title,
     description,
+    alternates: {
+      canonical: `${siteUrl}/article/${slug}`,
+    },
     openGraph: {
       title: article.title,
       description,
@@ -47,28 +55,66 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ArticlePage({ params }: Props) {
   const { slug } = await params;
+  const article = await getArticleBySlug(slug);
 
-  // In production:
-  // const article = await getPostBySlug(slug);
-  // if (!article) notFound();
-  // const related = await getRelatedPosts(article.categories.map(c => c.id), article.id);
+  if (!article) {
+    notFound();
+  }
 
-  const article = mockArticles.find((a) => a.slug === slug) ?? mockArticles[0];
+  const relatedArticles = await getRelatedArticles(article, 3);
+
+  const articleUrl = `${siteUrl}/article/${slug}`;
+  const categoryName = article.categories[0]?.name || "Balita";
+  const categorySlug = article.categories[0]?.slug || "balita";
 
   return (
     <>
-      {/* JSON-LD structured data for SEO */}
+      {/* BreadcrumbList JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: siteUrl,
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: categoryName,
+                item: `${siteUrl}/category/${categorySlug}`,
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: article.title,
+              },
+            ],
+          }),
+        }}
+      />
+      {/* NewsArticle JSON-LD */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "NewsArticle",
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": articleUrl,
+            },
             headline: article.title,
             description: stripHtml(article.excerpt),
             image: article.featuredImage?.url,
             datePublished: article.date,
             dateModified: article.modified,
+            url: articleUrl,
             author: {
               "@type": "Person",
               name: article.author.name,
@@ -78,13 +124,13 @@ export default async function ArticlePage({ params }: Props) {
               name: "Latest Balita PH",
               logo: {
                 "@type": "ImageObject",
-                url: "/logo.png",
+                url: `${siteUrl}/logo.png`,
               },
             },
           }),
         }}
       />
-      <ArticlePageClient slug={slug} />
+      <ArticlePageClient article={article} relatedArticles={relatedArticles} />
     </>
   );
 }

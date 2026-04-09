@@ -4,13 +4,19 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowTrendingUpIcon, ArrowTrendingDownIcon } from "@heroicons/react/20/solid";
 import { mockFuelPrices } from "@/lib/mock-data";
+import type { FuelPrice } from "@/lib/types";
 
 const weeklyChanges: Record<string, number> = {
   Petron: 2.50, Shell: 2.50, Caltex: 2.10, Phoenix: -0.50, Seaoil: -0.30,
   PTT: 1.80, Unioil: 1.00, Cleanfuel: -0.65, Jetti: 0.90, Total: 1.20,
 };
 
-export default function FuelPriceSidebar() {
+interface FuelPriceSidebarProps {
+  prices?: FuelPrice[];
+}
+
+export default function FuelPriceSidebar({ prices }: FuelPriceSidebarProps) {
+  const allPrices = prices && prices.length > 0 ? prices : mockFuelPrices;
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -28,7 +34,7 @@ export default function FuelPriceSidebar() {
         </h3>
       </div>
       <div className="divide-y divide-gray-100">
-        {mockFuelPrices.slice(0, 6).map((p) => {
+        {allPrices.slice(0, 6).map((p) => {
           const change = weeklyChanges[p.brand] ?? 0;
           const isUp = change > 0;
           return (

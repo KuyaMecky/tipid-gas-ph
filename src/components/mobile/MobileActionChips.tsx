@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { CurrencyDollarIcon, MapPinIcon, ChartBarIcon } from "@heroicons/react/24/solid";
 import { mockFuelPrices, mockGasStations, MOCK_USER_LOCATION } from "@/lib/mock-data";
+import type { FuelPrice } from "@/lib/types";
 import { calculateDistance } from "@/lib/utils";
 
-function getChipsData() {
-  const sorted = [...mockFuelPrices].sort((a, b) => a.unleaded - b.unleaded);
+function getChipsData(fuelPrices: FuelPrice[]) {
+  const sorted = [...fuelPrices].sort((a, b) => a.unleaded - b.unleaded);
   const cheapest = sorted[0];
   const avg = sorted[Math.floor(sorted.length / 2)];
   const savingsPerLiter = avg.unleaded - cheapest.unleaded;
@@ -27,8 +28,13 @@ function getChipsData() {
   return { savingsEstimate, cheapestStation };
 }
 
-export default function MobileActionChips() {
-  const { savingsEstimate, cheapestStation } = getChipsData();
+interface MobileActionChipsProps {
+  prices?: FuelPrice[];
+}
+
+export default function MobileActionChips({ prices }: MobileActionChipsProps) {
+  const allPrices = prices && prices.length > 0 ? prices : mockFuelPrices;
+  const { savingsEstimate, cheapestStation } = getChipsData(allPrices);
 
   return (
     <div className="flex gap-3 overflow-x-auto scrollbar-hide px-4 pt-4">

@@ -40,13 +40,13 @@ export default function MobileTipidTipsSection({ items }: MobileTipidTipsSection
                       src={item.featuredImage.url}
                       alt={item.featuredImage.alt}
                       fill
-                      className="object-contain"
+                      className="object-cover"
                       sizes="200px"
                     />
                   ) : (
                     <div className="w-full h-full bg-gray-200" />
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/75 to-black/45" />
                   {/* Numbered badge with icon */}
                   <div className="absolute top-2.5 left-2.5 flex items-center gap-1 px-2 py-1 rounded-full bg-emerald-500 shadow-md shadow-emerald-500/30">
                     <LightBulbIcon className="w-3 h-3 text-yellow-200" />

@@ -14,6 +14,12 @@ const API_URL =
 
 const REVALIDATE = Number(process.env.REVALIDATE_TIME) || 60;
 
+// When using an internal URL (127.0.0.1) to bypass Cloudflare, we need to
+// send the real Host header so Nginx routes to the correct server block and
+// WordPress generates correct URLs. NODE_TLS_REJECT_UNAUTHORIZED is handled
+// via env var in the PM2 ecosystem config.
+const INTERNAL_HOST = process.env.WORDPRESS_INTERNAL_HOST || "";
+
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
@@ -26,8 +32,14 @@ async function fetchAPI<T>(
   const url = new URL(`${API_URL}/wp/v2${endpoint}`);
   Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
 
+  const headers: Record<string, string> = {};
+  if (INTERNAL_HOST) {
+    headers["Host"] = INTERNAL_HOST;
+  }
+
   const res = await fetch(url.toString(), {
     next: { revalidate: REVALIDATE },
+    headers,
   });
 
   if (!res.ok) {
@@ -72,6 +84,7 @@ function transformPost(post: WPPost): Article {
       avatar: author?.avatar_urls?.["96"] ?? "",
     },
     categories: categories.map((c: WPCategory) => ({
+      id: c.id,
       name: c.name,
       slug: c.slug,
     })),

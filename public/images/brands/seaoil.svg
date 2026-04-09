@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" rx="24" fill="#00A651"/>
+  <circle cx="100" cy="80" r="40" fill="none" stroke="white" stroke-width="6"/>
+  <path d="M75 80 Q87 55 100 80 Q113 105 125 80" fill="none" stroke="white" stroke-width="5" stroke-linecap="round"/>
+  <path d="M70 95 Q85 70 100 95 Q115 120 130 95" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="4" stroke-linecap="round"/>
+  <text x="100" y="155" text-anchor="middle" font-family="Arial Black, sans-serif" font-weight="900" font-size="28" fill="white" letter-spacing="1">SEAOIL</text>
+</svg>

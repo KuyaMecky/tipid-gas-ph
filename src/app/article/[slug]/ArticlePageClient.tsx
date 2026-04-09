@@ -1,6 +1,5 @@
 "use client";
 
-import { useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -14,20 +13,15 @@ import TrendingSidebar from "@/components/sidebar/TrendingSidebar";
 import MapSidebarWidget from "@/components/sidebar/MapSidebarWidget";
 import NewsletterCTA from "@/components/sidebar/NewsletterCTA";
 import BrandComparisonWidget from "@/components/sidebar/BrandComparisonWidget";
-import { mockArticles } from "@/lib/mock-data";
 import { formatDate, timeAgo, getReadingTime } from "@/lib/utils";
+import type { Article } from "@/lib/types";
 
 interface ArticlePageClientProps {
-  slug: string;
+  article: Article;
+  relatedArticles: Article[];
 }
 
-export default function ArticlePageClient({ slug }: ArticlePageClientProps) {
-  const article = useMemo(
-    () => mockArticles.find((a) => a.slug === slug) ?? mockArticles[0],
-    [slug]
-  );
-
-  const relatedArticles = mockArticles.filter((a) => a.id !== article.id).slice(0, 3);
+export default function ArticlePageClient({ article, relatedArticles }: ArticlePageClientProps) {
   const readingTime = getReadingTime(article.content);
   const isFuelArticle = article.categories.some(
     (c) => c.slug === "gasolina" || c.slug === "diesel" || c.slug === "lpg"
@@ -203,16 +197,18 @@ export default function ArticlePageClient({ slug }: ArticlePageClientProps) {
           </div>
 
           {/* Related articles */}
-          <div className="mt-12 pt-8 border-t border-gray-200">
-            <h2 className="font-heading text-2xl font-bold text-gray-900 mb-6 tracking-tight">
-              Mga Kaugnay na Artikulo
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {relatedArticles.map((a, i) => (
-                <ArticleCard key={a.id} article={a} index={i} variant="compact" />
-              ))}
+          {relatedArticles.length > 0 && (
+            <div className="mt-12 pt-8 border-t border-gray-200">
+              <h2 className="font-heading text-2xl font-bold text-gray-900 mb-6 tracking-tight">
+                Mga Kaugnay na Artikulo
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {relatedArticles.map((a, i) => (
+                  <ArticleCard key={a.id} article={a} index={i} variant="compact" />
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </article>
 
         {/* Sidebar */}

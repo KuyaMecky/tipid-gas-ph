@@ -53,7 +53,7 @@ export default function FuelPriceTable({
         </tbody>
       </table>
       <p className="text-xs text-gray-400 mt-2">
-        * Prices in PHP per liter. Metro Manila rates. Last updated: March 17, 2026.
+        * Prices in PHP per liter. Metro Manila rates. Last updated: {prices[0]?.lastUpdated ? new Date(prices[0].lastUpdated).toLocaleDateString("en-PH", { month: "long", day: "numeric", year: "numeric" }) : "N/A"}.
       </p>
     </div>
   );

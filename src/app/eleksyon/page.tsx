@@ -3,7 +3,7 @@ import AnimatedSection from "@/components/ui/AnimatedSection";
 import ArticleCard from "@/components/article/ArticleCard";
 import AdSlot from "@/components/ui/AdSlot";
 import DesktopSidebar from "@/components/sidebar/DesktopSidebar";
-import { mockArticles } from "@/lib/mock-data";
+import { getArticlesByCategory } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Epekto ng Eleksyon sa Presyo ng Gas — Election 2025",
@@ -11,11 +11,8 @@ export const metadata: Metadata = {
     "Paano naaapektuhan ng eleksyon ang presyo ng gasolina at diesel sa Pilipinas? Alamin ang mga plataporma ng kandidato tungkol sa fuel pricing at energy policy.",
 };
 
-export default function EleksyonPage() {
-  const eleksyonArticles = mockArticles.filter(
-    (a) => a.categories.some((c) => c.slug === "eleksyon")
-  );
-  const allArticles = eleksyonArticles.length > 0 ? eleksyonArticles : mockArticles.slice(0, 4);
+export default async function EleksyonPage() {
+  const { data: allArticles } = await getArticlesByCategory("eleksyon", 1, 10);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">

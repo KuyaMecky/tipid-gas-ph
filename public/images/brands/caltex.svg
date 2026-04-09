@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" rx="24" fill="#FFFFFF"/>
+  <rect x="4" y="4" width="192" height="192" rx="20" fill="none" stroke="#E8E8E8" stroke-width="2"/>
+  <polygon points="100,25 112,65 155,65 120,90 132,130 100,105 68,130 80,90 45,65 88,65" fill="#ED1C24"/>
+  <circle cx="100" cy="80" r="20" fill="white"/>
+  <polygon points="100,65 105,75 115,77 107,84 109,95 100,89 91,95 93,84 85,77 95,75" fill="#ED1C24"/>
+  <text x="100" y="170" text-anchor="middle" font-family="Arial Black, sans-serif" font-weight="900" font-size="30" fill="#004B87" letter-spacing="1">CALTEX</text>
+</svg>

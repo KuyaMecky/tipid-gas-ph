@@ -3,9 +3,15 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { mockFuelPrices } from "@/lib/mock-data";
+import type { FuelPrice } from "@/lib/types";
 
-export default function BrandComparisonWidget() {
-  const sorted = [...mockFuelPrices].sort((a, b) => a.regular - b.regular);
+interface BrandComparisonWidgetProps {
+  prices?: FuelPrice[];
+}
+
+export default function BrandComparisonWidget({ prices }: BrandComparisonWidgetProps) {
+  const allPrices = prices && prices.length > 0 ? prices : mockFuelPrices;
+  const sorted = [...allPrices].sort((a, b) => a.regular - b.regular);
   const cheapest = sorted[0];
   const expensive = sorted[sorted.length - 1];
   const diff = expensive.regular - cheapest.regular;

@@ -43,6 +43,7 @@ function normalize(article: NewsDataResponse["results"][number]): TrendingNewsIt
     description: article.description || "",
     url: article.link,
     imageUrl: article.image_url,
+    imageCredit: article.image_url ? `Photo: ${article.source_name}` : null,
     source: article.source_name,
     sourceIcon: article.source_icon,
     publishedAt: article.pubDate,
