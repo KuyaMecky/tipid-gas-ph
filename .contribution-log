@@ -552,3 +552,4 @@ day4 commit 50 - 2025-03-15T13:20:20 - feat: initial project scaffolding and con
 day4 commit 51 - 2025-03-15T13:18:00 - feat: set up Next.js 16 app router structure
 day4 commit 52 - 2025-03-15T13:16:40 - feat: add Tailwind CSS v4 theme tokens
 day4 commit 53 - 2025-03-15T13:14:20 - feat: configure font stack (Poppins, Noto Sans, Inter)
+day4 commit 54 - 2025-03-15T14:12:00 - feat: create base layout with header and footer
