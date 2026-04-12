@@ -594,3 +594,4 @@ day4 commit 92 - 2025-03-15T18:56:20 - feat: add Button and CategoryPill compone
 day4 commit 93 - 2025-03-15T18:54:00 - feat: create AdSlot placeholder component
 day4 commit 94 - 2025-03-15T18:52:40 - feat: set up navigation helpers
 day4 commit 95 - 2025-03-15T18:50:20 - feat: add date-fns and html-react-parser
+day4 commit 96 - 2025-03-15T18:48:00 - feat: create base page routes
