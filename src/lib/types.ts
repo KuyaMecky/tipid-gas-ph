@@ -97,7 +97,7 @@ export interface Article {
     slug: string;
     avatar: string;
   };
-  categories: { name: string; slug: string }[];
+  categories: { id?: number; name: string; slug: string }[];
   tags: { name: string; slug: string }[];
 }
 
@@ -274,6 +274,7 @@ export interface TrendingNewsItem {
   description: string;
   url: string;
   imageUrl: string | null;
+  imageCredit: string | null;
   source: string;
   sourceIcon: string | null;
   publishedAt: string;
@@ -353,4 +354,63 @@ export interface FuelDeal {
 // Bookmark bar types
 export interface BookmarkBarData {
   savedCount: number;
+}
+
+// Cached news item (from NewsData.io, persisted to disk)
+export interface CachedNewsItem {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  content: string | null;
+  url: string;
+  imageUrl: string | null;
+  imageCredit: string | null;
+  source: string;
+  sourceIcon: string | null;
+  publishedAt: string;
+  category: string;
+  keywords: string[] | null;
+  cachedAt: string;
+}
+
+// Auto-publish system types
+export interface ScrapedArticle {
+  title: string;
+  content: string;
+  excerpt: string;
+  sourceUrl: string;
+  sourceName: string;
+  imageUrl: string | null;
+  imageCredit: string | null;
+  publishedAt: string;
+  categoryId: number;
+  categorySlug: string;
+}
+
+export interface AutoPublishLogEntry {
+  sourceUrl: string;
+  title: string;
+  fingerprint: string;
+  sourceName: string;
+  categorySlug: string;
+  wpPostId: number | null;
+  status: "published" | "skipped" | "failed";
+  error?: string;
+  publishedAt: string;
+}
+
+export interface AutoPublishLog {
+  lastRun: string | null;
+  totalPublished: number;
+  entries: AutoPublishLogEntry[];
+}
+
+export interface AutoPublishRunResult {
+  success: boolean;
+  published: number;
+  skipped: number;
+  failed: number;
+  entries: AutoPublishLogEntry[];
+  errors: string[];
 }

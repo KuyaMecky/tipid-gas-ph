@@ -73,19 +73,19 @@ export default function Footer() {
                   Business Inquiries
                 </p>
                 <a
-                  href="mailto:sales@latestbalitaph.com"
+                  href="mailto:sales@latestbalita.ph"
                   className="text-sm text-orange-500 hover:text-orange-300 transition-colors"
                 >
-                  sales@latestbalitaph.com
+                  sales@latestbalita.ph
                 </a>
               </div>
               <div>
                 <p className="text-sm font-semibold text-white">PR or Media</p>
                 <a
-                  href="mailto:marketing@latestbalitaph.com"
+                  href="mailto:marketing@latestbalita.ph"
                   className="text-sm text-orange-500 hover:text-orange-300 transition-colors"
                 >
-                  marketing@latestbalitaph.com
+                  marketing@latestbalita.ph
                 </a>
               </div>
             </div>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" rx="24" fill="#F58220"/>
+  <path d="M100 30 C80 30 65 50 70 70 C60 55 50 65 55 80 C45 75 40 90 50 100 C40 100 38 115 50 120 C55 135 70 140 100 140 C130 140 145 135 150 120 C162 115 160 100 150 100 C160 90 155 75 145 80 C150 65 140 55 130 70 C135 50 120 30 100 30Z" fill="#FFD700"/>
+  <circle cx="100" cy="90" r="15" fill="#F58220"/>
+  <text x="100" y="175" text-anchor="middle" font-family="Arial Black, sans-serif" font-weight="900" font-size="24" fill="white" letter-spacing="1">PHOENIX</text>
+</svg>

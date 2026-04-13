@@ -1,9 +1,12 @@
 import type { MetadataRoute } from "next";
-import { mockArticles, mockCategories, mockFuelPrices } from "@/lib/mock-data";
+import { mockCategories } from "@/lib/mock-data";
+import { getArticles } from "@/lib/content";
+import { getFuelPrices } from "@/lib/fuel-prices";
+import { getAllCachedNews } from "@/lib/news-cache";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://latestbalitaph.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://latestbalita.ph";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: siteUrl,
@@ -60,7 +63,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   // Brand cluster pages
-  const brandPages: MetadataRoute.Sitemap = mockFuelPrices.map((fuel) => ({
+  const fuelPrices = await getFuelPrices();
+  const brandPages: MetadataRoute.Sitemap = fuelPrices.map((fuel) => ({
     url: `${siteUrl}/gasolina/${fuel.brandSlug}`,
     lastModified: new Date(),
     changeFrequency: "daily" as const,
@@ -74,12 +78,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  const articlePages: MetadataRoute.Sitemap = mockArticles.map((article) => ({
-    url: `${siteUrl}/article/${article.slug}`,
-    lastModified: new Date(article.modified),
-    changeFrequency: "weekly" as const,
-    priority: 0.7,
-  }));
+  // Fetch real articles from WordPress (with fallback to mock)
+  let articlePages: MetadataRoute.Sitemap = [];
+  try {
+    const { data: articles } = await getArticles(1, 100);
+    articlePages = articles.map((article) => ({
+      url: `${siteUrl}/article/${article.slug}`,
+      lastModified: new Date(article.modified),
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+    }));
+  } catch {
+    // Fallback handled inside getArticles
+  }
 
-  return [...staticPages, ...pillarPages, ...brandPages, ...categoryPages, ...articlePages];
+  // Fetch cached news items
+  let newsPages: MetadataRoute.Sitemap = [];
+  try {
+    const newsItems = await getAllCachedNews();
+    newsPages = newsItems.map((item) => ({
+      url: `${siteUrl}/news/${item.id}`,
+      lastModified: new Date(item.cachedAt),
+      changeFrequency: "daily" as const,
+      priority: 0.6,
+    }));
+  } catch {
+    // Non-critical
+  }
+
+  return [...staticPages, ...pillarPages, ...brandPages, ...categoryPages, ...articlePages, ...newsPages];
 }

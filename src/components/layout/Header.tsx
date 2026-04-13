@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -62,14 +63,15 @@ export default function Header() {
               )}
             </button>
 
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-9 h-9 bg-orange-500 rounded-lg flex items-center justify-center">
-                <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2C10.5 2 9.5 3.5 9.5 5.5C9.5 7.5 10 9 10 11C8 11 6 10.5 5 9.5C4.5 10.5 4 12 4 13.5C4 18 7.5 22 12 22C16.5 22 20 18 20 13.5C20 8 16 4 14.5 3C13.5 2.3 12.5 2 12 2Z" />
-                </svg>
-              </div>
-              <span className="font-extrabold text-gray-900 text-lg">LATEST</span>{" "}
-              <span className="font-extrabold text-orange-500 text-lg">BALITA</span>
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/logo.png"
+                alt="Latest Balita PH"
+                width={180}
+                height={40}
+                className="h-9 w-auto"
+                priority
+              />
             </Link>
 
             <button
@@ -84,16 +86,15 @@ export default function Header() {
           {/* Desktop header row */}
           <div className="hidden lg:flex items-center justify-between h-16">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-              <div className="w-9 h-9 bg-orange-500 rounded-lg flex items-center justify-center">
-                <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2C10.5 2 9.5 3.5 9.5 5.5C9.5 7.5 10 9 10 11C8 11 6 10.5 5 9.5C4.5 10.5 4 12 4 13.5C4 18 7.5 22 12 22C16.5 22 20 18 20 13.5C20 8 16 4 14.5 3C13.5 2.3 12.5 2 12 2Z" />
-                </svg>
-              </div>
-              <div>
-                <span className="font-extrabold text-gray-900 text-lg">LATEST</span>{" "}
-                <span className="font-extrabold text-orange-500 text-lg">BALITA</span>
-              </div>
+            <Link href="/" className="flex items-center flex-shrink-0">
+              <Image
+                src="/logo.png"
+                alt="Latest Balita PH"
+                width={220}
+                height={48}
+                className="h-10 w-auto"
+                priority
+              />
             </Link>
 
             {/* Desktop Nav */}

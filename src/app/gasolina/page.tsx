@@ -5,21 +5,27 @@ import AdSlot from "@/components/ui/AdSlot";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import ArticleCard from "@/components/article/ArticleCard";
 import DesktopSidebar from "@/components/sidebar/DesktopSidebar";
-import { mockArticles, mockFuelPrices } from "@/lib/mock-data";
+import { getFuelPrices } from "@/lib/fuel-prices";
+import { getArticlesByCategory } from "@/lib/content";
 import Link from "next/link";
 import type { FAQItem } from "@/lib/types";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://latestbalita.ph";
 
 export const metadata: Metadata = {
   title: "Presyo ng Gasolina sa Pilipinas — Updated Daily",
   description:
     "Alamin ang pinakabagong presyo ng gasolina, diesel, at premium fuel sa lahat ng gas stations sa Pilipinas. I-compare ang Petron, Shell, Caltex, Phoenix, at iba pa.",
+  alternates: {
+    canonical: `${siteUrl}/gasolina`,
+  },
 };
 
 const gasolinaFAQs: FAQItem[] = [
   {
     question: "Magkano ang presyo ng gasolina ngayon sa Pilipinas?",
     answer:
-      "Ang presyo ng regular gasoline ay nasa range ng ₱57-59 per liter, habang ang unleaded ay nasa ₱62-64 per liter depende sa brand at lokasyon. Ang diesel naman ay nasa ₱54-56 per liter. I-check ang aming updated price table sa itaas para sa exact prices.",
+      "Ang presyo ng regular gasoline ay nasa range ng P89-92 per liter, habang ang unleaded ay nasa P93-96 per liter depende sa brand at lokasyon. Ang diesel naman ay nasa P118-121 per liter. I-check ang aming updated price table sa itaas para sa exact prices.",
   },
   {
     question: "Kailan nagbabago ang presyo ng gas sa Pilipinas?",
@@ -29,7 +35,7 @@ const gasolinaFAQs: FAQItem[] = [
   {
     question: "Alin ang pinakamurang gas station sa Pilipinas?",
     answer:
-      "Ang independent fuel brands tulad ng Cleanfuel, Seaoil, at Phoenix ay karaniwang mas mura kaysa sa big three (Petron, Shell, Caltex) ng ₱1-3 per liter. Gayunpaman, ang actual prices ay nag-iiba base sa lokasyon.",
+      "Ang independent fuel brands tulad ng Cleanfuel, Seaoil, at Phoenix ay karaniwang mas mura kaysa sa big three (Petron, Shell, Caltex) ng P1-3 per liter. Gayunpaman, ang actual prices ay nag-iiba base sa lokasyon.",
   },
   {
     question: "Paano makatipid sa gasolina?",
@@ -43,13 +49,37 @@ const gasolinaFAQs: FAQItem[] = [
   },
 ];
 
-export default function GasolinaPage() {
-  const fuelArticles = mockArticles.filter((a) =>
-    a.categories.some((c) => c.slug === "gasolina" || c.slug === "diesel" || c.slug === "lpg")
-  );
+export default async function GasolinaPage() {
+  const [{ data: fuelArticles }, fuelPrices] = await Promise.all([
+    getArticlesByCategory("gasolina", 1, 6),
+    getFuelPrices(),
+  ]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+    {/* BreadcrumbList JSON-LD */}
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: siteUrl,
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Presyo ng Gasolina",
+            },
+          ],
+        }),
+      }}
+    />
     <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8">
     <div>
       {/* Hero */}
@@ -67,7 +97,7 @@ export default function GasolinaPage() {
 
       {/* Fuel Price Table */}
       <AnimatedSection delay={0.1}>
-        <FuelPriceTable />
+        <FuelPriceTable prices={fuelPrices} />
       </AnimatedSection>
 
       {/* Brand quick links */}
@@ -77,7 +107,7 @@ export default function GasolinaPage() {
             Presyo per Brand
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-            {mockFuelPrices.map((fuel) => (
+            {fuelPrices.map((fuel) => (
               <Link
                 key={fuel.brandSlug}
                 href={`/gasolina/${fuel.brandSlug}`}

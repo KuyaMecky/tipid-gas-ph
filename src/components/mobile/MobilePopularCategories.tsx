@@ -15,14 +15,15 @@ import {
 import type { Category } from "@/lib/types";
 import MobileSectionHeader from "./MobileSectionHeader";
 
-const CATEGORY_META: Record<string, { gradient: string; badge: string; Icon: React.ComponentType<React.SVGProps<SVGSVGElement>> }> = {
-  gasolina: { gradient: "from-yellow-900/80 via-yellow-700/50 to-yellow-500/20", badge: "bg-yellow-500", Icon: FireIcon },
-  diesel: { gradient: "from-blue-900/80 via-blue-700/50 to-blue-500/20", badge: "bg-blue-600", Icon: TruckIcon },
-  lpg: { gradient: "from-amber-900/80 via-amber-700/50 to-amber-500/20", badge: "bg-amber-500", Icon: BoltIcon },
-  balita: { gradient: "from-red-900/80 via-red-700/50 to-red-500/20", badge: "bg-red-600", Icon: NewspaperIcon },
-  tips: { gradient: "from-emerald-900/80 via-emerald-700/50 to-emerald-500/20", badge: "bg-emerald-500", Icon: LightBulbIcon },
-  eleksyon: { gradient: "from-orange-900/80 via-orange-700/50 to-orange-500/20", badge: "bg-orange-500", Icon: MegaphoneIcon },
-  showbiz: { gradient: "from-pink-900/80 via-pink-700/50 to-pink-500/20", badge: "bg-pink-500", Icon: StarIcon },
+const CATEGORY_META: Record<string, { bg: string; badge: string; image: string; Icon: React.ComponentType<React.SVGProps<SVGSVGElement>> }> = {
+  gasolina: { bg: "from-red-700 via-orange-600 to-yellow-500", badge: "bg-yellow-500", image: "/images/categories/gasolina.jpg", Icon: FireIcon },
+  diesel: { bg: "from-blue-800 via-blue-600 to-cyan-500", badge: "bg-blue-600", image: "/images/categories/diesel.jpg", Icon: TruckIcon },
+  lpg: { bg: "from-amber-700 via-amber-500 to-yellow-400", badge: "bg-amber-500", image: "/images/categories/lpg.jpg", Icon: BoltIcon },
+  balita: { bg: "from-red-800 via-red-600 to-rose-500", badge: "bg-red-600", image: "/images/categories/balita.jpg", Icon: NewspaperIcon },
+  tips: { bg: "from-emerald-700 via-emerald-500 to-teal-400", badge: "bg-emerald-500", image: "/images/categories/tips.jpg", Icon: LightBulbIcon },
+  eleksyon: { bg: "from-orange-700 via-orange-500 to-amber-400", badge: "bg-orange-500", image: "/images/categories/eleksyon.jpg", Icon: MegaphoneIcon },
+  showbiz: { bg: "from-pink-700 via-fuchsia-500 to-purple-500", badge: "bg-pink-500", image: "/images/categories/showbiz.jpg", Icon: StarIcon },
+  sports: { bg: "from-green-700 via-teal-500 to-cyan-400", badge: "bg-teal-500", image: "/images/categories/sports.jpg", Icon: StarIcon },
 };
 
 const CATEGORY_HREFS: Record<string, string> = {
@@ -66,18 +67,14 @@ export default function MobilePopularCategories({ categories }: MobilePopularCat
                 className="block relative rounded-2xl overflow-hidden group"
               >
                 <div className="aspect-[4/3] relative">
-                  {cat.image ? (
-                    <Image
-                      src={cat.image}
-                      alt={cat.name}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      sizes="(max-width: 1024px) 50vw"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-gray-200" />
-                  )}
-                  <div className={`absolute inset-0 bg-gradient-to-t ${meta.gradient}`} />
+                  <Image
+                    src={meta.image}
+                    alt={cat.name}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
                   {/* Icon — top-right */}
                   <div className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">

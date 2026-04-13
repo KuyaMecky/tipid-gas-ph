@@ -1,29 +1,18 @@
 "use client";
 
-import { useMemo } from "react";
 import { motion } from "framer-motion";
 import SearchBar from "@/components/ui/SearchBar";
 import ArticleCard from "@/components/article/ArticleCard";
 import Sidebar from "@/components/layout/Sidebar";
-import { mockArticles } from "@/lib/mock-data";
+import type { Article } from "@/lib/types";
 
 interface SearchPageClientProps {
   query: string;
+  initialResults: Article[];
+  total: number;
 }
 
-export default function SearchPageClient({ query }: SearchPageClientProps) {
-  const results = useMemo(() => {
-    if (!query) return [];
-    const q = query.toLowerCase();
-    return mockArticles.filter(
-      (a) =>
-        a.title.toLowerCase().includes(q) ||
-        a.excerpt.toLowerCase().includes(q) ||
-        a.categories.some((c) => c.name.toLowerCase().includes(q)) ||
-        a.author.name.toLowerCase().includes(q)
-    );
-  }, [query]);
-
+export default function SearchPageClient({ query, initialResults, total }: SearchPageClientProps) {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8">
@@ -43,13 +32,13 @@ export default function SearchPageClient({ query }: SearchPageClientProps) {
           {/* Results */}
           {query && (
             <p className="text-sm text-gray-500 mb-6">
-              {results.length} article{results.length !== 1 ? "s" : ""} found
+              {total} article{total !== 1 ? "s" : ""} found
             </p>
           )}
 
-          {results.length > 0 ? (
+          {initialResults.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {results.map((article, i) => (
+              {initialResults.map((article, i) => (
                 <ArticleCard
                   key={article.id}
                   article={article}
@@ -60,7 +49,6 @@ export default function SearchPageClient({ query }: SearchPageClientProps) {
             </div>
           ) : query ? (
             <div className="text-center py-16">
-              <div className="text-6xl mb-4">🔍</div>
               <h2 className="text-xl font-bold text-gray-900 mb-2">
                 No results found
               </h2>
@@ -70,7 +58,6 @@ export default function SearchPageClient({ query }: SearchPageClientProps) {
             </div>
           ) : (
             <div className="text-center py-16">
-              <div className="text-6xl mb-4">✍️</div>
               <h2 className="text-xl font-bold text-gray-900 mb-2">
                 Start searching
               </h2>

@@ -144,7 +144,7 @@ export default function HookHero({ slides }: HookHeroProps) {
             </motion.div>
 
             {/* Cinematic overlay: bottom-heavy gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/15" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/40" />
             {/* Side vignette for depth */}
             <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent" />
 

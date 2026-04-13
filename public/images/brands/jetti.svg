@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" rx="24" fill="#DC2626"/>
+  <path d="M70 45 L130 45 L140 70 L120 65 L130 110 L100 95 L70 110 L80 65 L60 70 Z" fill="#FCA5A5"/>
+  <path d="M80 55 L120 55 L128 72 L112 68 L120 105 L100 92 L80 105 L88 68 L72 72 Z" fill="#DC2626"/>
+  <path d="M90 62 L110 62 L115 74 L106 71 L110 98 L100 90 L90 98 L94 71 L85 74 Z" fill="#FECACA"/>
+  <text x="100" y="155" text-anchor="middle" font-family="Arial Black, sans-serif" font-weight="900" font-size="36" fill="white" letter-spacing="2">JETTI</text>
+</svg>

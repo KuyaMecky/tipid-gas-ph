@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import CategoryPageClient from "./CategoryPageClient";
+import { getArticlesByCategory } from "@/lib/content";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://latestbalita.ph";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -8,8 +11,6 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
 
-  // In production, fetch category from WordPress:
-  // const category = await getCategoryBySlug(slug);
   const title = slug
     .split("-")
     .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
@@ -18,6 +19,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${title} News`,
     description: `Pinakabagong ${title.toLowerCase()} balita at updates mula sa Latest Balita PH.`,
+    alternates: {
+      canonical: `${siteUrl}/category/${slug}`,
+    },
     openGraph: {
       title: `${title} News | Latest Balita PH`,
       description: `Pinakabagong ${title.toLowerCase()} balita at updates.`,
@@ -27,10 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function CategoryPage({ params }: Props) {
   const { slug } = await params;
+  const { data: articles } = await getArticlesByCategory(slug, 1, 20);
 
-  // In production:
-  // const category = await getCategoryBySlug(slug);
-  // const { data: posts, total, totalPages } = await getPostsByCategory(slug);
-
-  return <CategoryPageClient slug={slug} />;
+  return <CategoryPageClient slug={slug} articles={articles} />;
 }

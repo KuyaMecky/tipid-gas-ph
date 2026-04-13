@@ -2,10 +2,10 @@ import type { Article, Category, FuelPrice, AuthorProfile, FeedItem, FeedContent
 
 // Mock data for development / demo before WordPress is connected
 
-const THUMB_GAS = "/thumbnails/Gas_.png";
-const THUMB_DAILY = "/thumbnails/DAily.png";
-const THUMB_ENTERTAINMENT = "/thumbnails/Entertainment.png";
-const THUMB_SPORT = "/thumbnails/Sport.png";
+const THUMB_GAS = "/thumbnails/fuel.svg";
+const THUMB_DAILY = "/thumbnails/news.svg";
+const THUMB_ENTERTAINMENT = "/thumbnails/entertainment.svg";
+const THUMB_SPORT = "/thumbnails/sports.svg";
 
 export const mockCategories: Category[] = [
   { id: 1, name: "Gasolina", slug: "gasolina", description: "Presyo ng gasolina sa buong Pilipinas", count: 42, image: THUMB_GAS },

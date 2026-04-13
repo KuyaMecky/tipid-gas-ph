@@ -35,7 +35,7 @@ function HeroCard({ item }: { item: FeedItem }) {
               src={item.featuredImage.url}
               alt={item.featuredImage.alt}
               fill
-              className="object-contain transition-transform duration-500 group-hover:scale-105"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
               sizes="(max-width: 768px) 100vw, 768px"
             />
           )}
@@ -85,7 +85,7 @@ function StandardCard({ item }: { item: FeedItem }) {
               src={item.featuredImage.url}
               alt={item.featuredImage.alt}
               fill
-              className="object-contain transition-transform duration-500 group-hover:scale-105"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
               sizes="(max-width: 768px) 100vw, 640px"
             />
           </div>

@@ -49,13 +49,13 @@ export default function MobileTwoColumnFeature({
                   src={leftItem.featuredImage.url}
                   alt={leftItem.featuredImage.alt}
                   fill
-                  className="object-contain group-hover:scale-105 transition-transform duration-300"
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
                   sizes="(max-width: 1024px) 50vw"
                 />
               ) : (
                 <div className="w-full h-full bg-gray-200" />
               )}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/75 to-black/45" />
 
               {/* Type icon — top-left */}
               <div className="absolute top-3 left-3 w-8 h-8 rounded-full bg-red-600/80 flex items-center justify-center shadow-md backdrop-blur-sm">
@@ -101,13 +101,13 @@ export default function MobileTwoColumnFeature({
                   src={rightItem.featuredImage.url}
                   alt={rightItem.featuredImage.alt}
                   fill
-                  className="object-contain group-hover:scale-105 transition-transform duration-300"
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
                   sizes="(max-width: 1024px) 50vw"
                 />
               ) : (
                 <div className="w-full h-full bg-gray-200" />
               )}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/75 to-black/45" />
 
               {/* Type icon — top-left */}
               <div className="absolute top-3 left-3 w-8 h-8 rounded-full bg-blue-600/80 flex items-center justify-center shadow-md backdrop-blur-sm">

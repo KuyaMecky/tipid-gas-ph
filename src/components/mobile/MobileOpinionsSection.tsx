@@ -52,7 +52,7 @@ export default function MobileOpinionsSection({ items }: MobileOpinionsSectionPr
                         src={item.featuredImage.url}
                         alt={item.featuredImage.alt}
                         fill
-                        className="object-contain"
+                        className="object-cover"
                         sizes="260px"
                       />
                     ) : (

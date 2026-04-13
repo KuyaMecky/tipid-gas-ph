@@ -4,7 +4,7 @@ import ArticleCard from "@/components/article/ArticleCard";
 import FAQSection from "@/components/ui/FAQSection";
 import AdSlot from "@/components/ui/AdSlot";
 import DesktopSidebar from "@/components/sidebar/DesktopSidebar";
-import { mockArticles } from "@/lib/mock-data";
+import { getArticlesByCategory } from "@/lib/content";
 import type { FAQItem } from "@/lib/types";
 
 export const metadata: Metadata = {
@@ -27,15 +27,12 @@ const tipsFAQs: FAQItem[] = [
   {
     question: "Mas tipid ba ang diesel kaysa gasoline?",
     answer:
-      "Oo, ang diesel vehicles ay generally mas fuel-efficient kaysa sa gasoline. Ang diesel engines ay may mas mataas na compression ratio na nagre-result sa better fuel economy. Ang presyo ng diesel ay karaniwang mas mura rin ng ₱3-5 per liter.",
+      "Oo, ang diesel vehicles ay generally mas fuel-efficient kaysa sa gasoline. Ang diesel engines ay may mas mataas na compression ratio na nagre-result sa better fuel economy. Ang presyo ng diesel ay karaniwang mas mura rin ng P3-5 per liter.",
   },
 ];
 
-export default function TipsPage() {
-  const tipsArticles = mockArticles.filter(
-    (a) => a.categories.some((c) => c.slug === "tips")
-  );
-  const allArticles = tipsArticles.length > 0 ? tipsArticles : mockArticles.slice(0, 4);
+export default async function TipsPage() {
+  const { data: allArticles } = await getArticlesByCategory("tips", 1, 10);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">

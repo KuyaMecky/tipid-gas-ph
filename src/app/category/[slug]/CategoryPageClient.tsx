@@ -1,27 +1,23 @@
 "use client";
 
-import { useMemo } from "react";
 import BreakingNewsTicker from "@/components/home/BreakingNewsTicker";
 import ArticleCardLarge from "@/components/article/ArticleCardLarge";
 import ArticleCard from "@/components/article/ArticleCard";
 import Sidebar from "@/components/layout/Sidebar";
 import AnimatedSection from "@/components/ui/AnimatedSection";
-import { mockArticles, mockCategories } from "@/lib/mock-data";
+import type { Article } from "@/lib/types";
 
 interface CategoryPageClientProps {
   slug: string;
+  articles: Article[];
 }
 
-export default function CategoryPageClient({ slug }: CategoryPageClientProps) {
-  const category = useMemo(
-    () => mockCategories.find((c) => c.slug === slug),
-    [slug]
-  );
+export default function CategoryPageClient({ slug, articles }: CategoryPageClientProps) {
+  const categoryName = slug
+    .split("-")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
 
-  const categoryName = category?.name ?? slug.charAt(0).toUpperCase() + slug.slice(1);
-
-  // In production, filter by category from WP data
-  const articles = mockArticles;
   const featured = articles[0];
   const rest = articles.slice(1);
 
@@ -36,9 +32,11 @@ export default function CategoryPageClient({ slug }: CategoryPageClientProps) {
           />
 
           {/* Featured article */}
-          <AnimatedSection>
-            <ArticleCardLarge article={featured} />
-          </AnimatedSection>
+          {featured && (
+            <AnimatedSection>
+              <ArticleCardLarge article={featured} />
+            </AnimatedSection>
+          )}
 
           {/* Section title */}
           <AnimatedSection delay={0.1}>

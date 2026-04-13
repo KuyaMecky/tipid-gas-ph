@@ -4,12 +4,18 @@ import { useState, useMemo } from "react";
 import Image from "next/image";
 import { CurrencyDollarIcon } from "@heroicons/react/24/solid";
 import { mockFuelPrices, mockGasStations, brandColors } from "@/lib/mock-data";
+import type { FuelPrice } from "@/lib/types";
 import StationDetailModal from "./StationDetailModal";
 
-export default function MobileCheapestCard() {
-  const [modalOpen, setModalOpen] = useState(false);
+interface MobileCheapestCardProps {
+  prices?: FuelPrice[];
+}
 
-  const sorted = [...mockFuelPrices].sort((a, b) => a.unleaded - b.unleaded);
+export default function MobileCheapestCard({ prices }: MobileCheapestCardProps) {
+  const [modalOpen, setModalOpen] = useState(false);
+  const allPrices = prices && prices.length > 0 ? prices : mockFuelPrices;
+
+  const sorted = [...allPrices].sort((a, b) => a.unleaded - b.unleaded);
   const cheapest = sorted[0];
   const runner = sorted[1];
   const savingsPerTank = Math.round((runner.unleaded - cheapest.unleaded) * 40);

@@ -64,13 +64,13 @@ export default function MobileHotNewsSection({ items }: MobileHotNewsSectionProp
                     src={item.featuredImage.url}
                     alt={item.featuredImage.alt}
                     fill
-                    className="object-contain group-hover:scale-105 transition-transform duration-300"
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
                     sizes="(max-width: 1024px) 50vw"
                   />
                 ) : (
                   <div className="w-full h-full bg-gray-200" />
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/75 to-black/45" />
                 <div className="absolute bottom-0 left-0 right-0 p-3">
                   <h3 className="font-heading font-bold text-sm text-white leading-snug line-clamp-3">
                     {item.hookHeadline}

@@ -9,10 +9,10 @@ import type { FeedItem } from "@/lib/types";
 import MobileShareWidget from "./MobileShareWidget";
 
 const GRADIENT_BY_TYPE: Record<string, string> = {
-  BALITA: "from-black/90 via-black/50 to-black/20",
-  ALERT: "from-black/90 via-black/50 to-black/20",
-  TIPID: "from-black/90 via-black/50 to-black/20",
-  KWENTO: "from-black/90 via-black/50 to-black/20",
+  BALITA: "from-black via-black/75 to-black/45",
+  ALERT: "from-black via-black/75 to-black/45",
+  TIPID: "from-black via-black/75 to-black/45",
+  KWENTO: "from-black via-black/75 to-black/45",
 };
 
 const BADGE_BY_TYPE: Record<string, string> = {
@@ -57,7 +57,7 @@ export default function MobileSecondaryCard({ item }: MobileSecondaryCardProps) 
                 src={item.featuredImage.url}
                 alt={item.featuredImage.alt}
                 fill
-                className="object-contain"
+                className="object-cover"
                 sizes="(max-width: 1024px) 100vw"
               />
             ) : (
@@ -105,7 +105,7 @@ export default function MobileSecondaryCard({ item }: MobileSecondaryCardProps) 
         {/* Share Widget */}
         <div className="px-4 pb-3 bg-gray-900">
           <MobileShareWidget
-            articleUrl={`https://latestbalitaph.com${item.actionHref}`}
+            articleUrl={`https://latestbalita.ph${item.actionHref}`}
             articleTitle={item.hookHeadline}
             shareCount={item.reactionCount}
           />
