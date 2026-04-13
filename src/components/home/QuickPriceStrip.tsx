@@ -8,18 +8,18 @@ interface QuickPriceStripProps {
   prices: FuelPrice[];
 }
 
-// Simulated weekly change (positive = up, negative = down)
+// Weekly change based on March 24, 2026 Fuel Price Advisory
 const weeklyChanges: Record<string, number> = {
-  Petron: 2.50,
-  Shell: 2.50,
-  Caltex: 2.10,
-  Phoenix: -0.50,
-  Seaoil: -0.30,
-  PTT: 1.80,
-  Unioil: 1.00,
-  Cleanfuel: -0.65,
-  Jetti: 0.90,
-  Total: 1.20,
+  Petron: 10.50,
+  Shell: 12.00,
+  Caltex: 11.00,
+  Phoenix: 9.00,
+  Seaoil: 9.50,
+  PTT: 10.00,
+  Unioil: 9.80,
+  Cleanfuel: 9.00,
+  Jetti: 10.20,
+  Total: 11.50,
 };
 
 export default function QuickPriceStrip({ prices }: QuickPriceStripProps) {

@@ -107,7 +107,7 @@ export default function GasolinaPage() {
             conditions, exchange rate, at iba pang factors.
           </p>
           <p>
-            Sa Tipid Gas PH, layunin naming bigyan ka ng pinaka-updated na
+            Sa Latest Balita PH, layunin naming bigyan ka ng pinaka-updated na
             impormasyon tungkol sa presyo ng gasolina, diesel, at LPG para
             makatulong sa iyo na mag-plan ng iyong fuel budget at makatipid.
           </p>

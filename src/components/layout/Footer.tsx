@@ -73,19 +73,19 @@ export default function Footer() {
                   Business Inquiries
                 </p>
                 <a
-                  href="mailto:sales@tipidgasph.com"
+                  href="mailto:sales@latestbalitaph.com"
                   className="text-sm text-orange-500 hover:text-orange-300 transition-colors"
                 >
-                  sales@tipidgasph.com
+                  sales@latestbalitaph.com
                 </a>
               </div>
               <div>
                 <p className="text-sm font-semibold text-white">PR or Media</p>
                 <a
-                  href="mailto:marketing@tipidgasph.com"
+                  href="mailto:marketing@latestbalitaph.com"
                   className="text-sm text-orange-500 hover:text-orange-300 transition-colors"
                 >
-                  marketing@tipidgasph.com
+                  marketing@latestbalitaph.com
                 </a>
               </div>
             </div>
@@ -111,7 +111,7 @@ export default function Footer() {
 
           {/* Bottom bar */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-gray-500">
-            <p>&copy; {new Date().getFullYear()} Tipid Gas PH. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} Latest Balita PH. All rights reserved.</p>
             <div className="flex gap-4">
               <Link href="/" className="hover:text-gray-300 transition-colors">
                 Terms and Conditions

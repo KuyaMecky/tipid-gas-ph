@@ -75,7 +75,7 @@ export default async function ArticlePage({ params }: Props) {
             },
             publisher: {
               "@type": "Organization",
-              name: "Tipid Gas PH",
+              name: "Latest Balita PH",
               logo: {
                 "@type": "ImageObject",
                 url: "/logo.png",

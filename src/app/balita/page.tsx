@@ -48,7 +48,7 @@ export default function BalitaPage() {
         <div className="article-content mt-12">
           <h2>Tungkol sa Fuel News sa Pilipinas</h2>
           <p>
-            Ang Tipid Gas PH ay nagbibigay ng pinakabagong at pinaka-accurate
+            Ang Latest Balita PH ay nagbibigay ng pinakabagong at pinaka-accurate
             na balita tungkol sa fuel industry sa Pilipinas. Mula sa weekly
             oil price adjustments hanggang sa mga policy changes ng DOE,
             ini-cover namin ang lahat ng importanteng impormasyon para sa

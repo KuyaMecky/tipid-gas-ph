@@ -25,13 +25,13 @@ export default function ArticleCardLarge({ article }: ArticleCardLargeProps) {
         href={`/article/${article.slug}`}
         className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 md:p-6 rounded-2xl border-2 border-gray-200 hover:border-orange-500/30 hover:shadow-lg hover:shadow-orange-500/5 transition-all duration-200 bg-white"
       >
-        <div className="relative aspect-[4/3] md:aspect-auto rounded-xl overflow-hidden bg-gray-200">
+        <div className="relative aspect-[16/9] md:aspect-auto rounded-xl overflow-hidden bg-gray-900">
           {article.featuredImage && (
             <Image
               src={article.featuredImage.url}
               alt={article.featuredImage.alt}
               fill
-              className="object-cover group-hover:scale-105 transition-transform duration-500"
+              className="object-contain group-hover:scale-105 transition-transform duration-500"
               sizes="(max-width: 768px) 100vw, 50vw"
               priority
             />

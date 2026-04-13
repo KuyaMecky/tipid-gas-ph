@@ -63,13 +63,13 @@ export default function ArticleCard({ article, index = 0, variant = "default" }:
         className="group cursor-pointer"
       >
         <Link href={`/article/${article.slug}`} className="block">
-          <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-gray-200 mb-3">
+          <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-gray-900 mb-3">
             {article.featuredImage && (
               <Image
                 src={article.featuredImage.url}
                 alt={article.featuredImage.alt}
                 fill
-                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                className="object-contain group-hover:scale-105 transition-transform duration-300"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
               />
             )}
@@ -102,13 +102,13 @@ export default function ArticleCard({ article, index = 0, variant = "default" }:
       className="group cursor-pointer"
     >
       <Link href={`/article/${article.slug}`} className="block">
-        <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-gray-200 mb-4">
+        <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-gray-900 mb-4">
           {article.featuredImage && (
             <Image
               src={article.featuredImage.url}
               alt={article.featuredImage.alt}
               fill
-              className="object-cover group-hover:scale-105 transition-transform duration-300"
+              className="object-contain group-hover:scale-105 transition-transform duration-300"
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             />
           )}

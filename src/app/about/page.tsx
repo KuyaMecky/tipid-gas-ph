@@ -4,7 +4,7 @@ import AnimatedSection from "@/components/ui/AnimatedSection";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Alamin ang tungkol sa Tipid Gas PH — ang pinaka-trusted na source ng fuel price information sa Pilipinas.",
+    "Alamin ang tungkol sa Latest Balita PH — ang pinaka-trusted na source ng fuel price information sa Pilipinas.",
 };
 
 const stats = [
@@ -44,7 +44,7 @@ export default function AboutPage() {
       <AnimatedSection>
         <div className="text-center mb-16">
           <h1 className="font-heading text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">
-            About <span className="text-orange-500">Tipid Gas PH</span>
+            About <span className="text-orange-500">Latest Balita PH</span>
           </h1>
           <p className="text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
             Kami ang pinaka-trusted na source ng fuel price information sa

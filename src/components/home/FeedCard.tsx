@@ -29,13 +29,13 @@ function HeroCard({ item }: { item: FeedItem }) {
       className="relative rounded-2xl overflow-hidden feed-card-shadow group"
     >
       <Link href={item.actionHref} className="block">
-        <div className="relative aspect-[16/9] md:aspect-[2/1]">
+        <div className="relative aspect-[16/9] md:aspect-[2/1] bg-gray-900">
           {item.featuredImage && (
             <Image
               src={item.featuredImage.url}
               alt={item.featuredImage.alt}
               fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              className="object-contain transition-transform duration-500 group-hover:scale-105"
               sizes="(max-width: 768px) 100vw, 768px"
             />
           )}
@@ -80,12 +80,12 @@ function StandardCard({ item }: { item: FeedItem }) {
     >
       <Link href={item.actionHref} className="block group">
         {item.featuredImage && (
-          <div className="relative aspect-[16/9] overflow-hidden">
+          <div className="relative aspect-[16/9] overflow-hidden bg-gray-900">
             <Image
               src={item.featuredImage.url}
               alt={item.featuredImage.alt}
               fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              className="object-contain transition-transform duration-500 group-hover:scale-105"
               sizes="(max-width: 768px) 100vw, 640px"
             />
           </div>
