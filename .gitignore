@@ -35,6 +35,10 @@ yarn-error.log*
 
 # claude
 .claude/
+.contribution-log
+
+# temp scripts
+update-content*.php
 
 # vercel
 .vercel
